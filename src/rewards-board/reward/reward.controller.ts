@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { Reward } from './models/reward.interface';
 import { RewardService } from './reward.service';
 
-@Controller('/api/rewards-board/reward')
+@Controller('rewards-board/reward')
 export class RewardController {
     public constructor(private readonly _rewardService: RewardService) {}
 

@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe, Patch } from '@nestjs/common';
 import { User } from './models/user.interface';
 import { UserService } from './user.service';
 
-@Controller('api/rewards-board/user')
+@Controller('rewards-board/user')
 export class UserController {
     public constructor(private readonly _userService: UserService) {}
 

@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { Objective } from './models/objective.interface';
 import { ObjectiveService } from './objective.service';
 
-@Controller('/api/rewards-board/objective')
+@Controller('rewards-board/objective')
 export class ObjectiveController {
     public constructor(private readonly _objectiveService: ObjectiveService) {}
 

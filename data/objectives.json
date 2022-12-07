@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Objectif 1",
+    "description": "C'est pas si dur...",
+    "reward": 3
+  },
+  {
+    "id": 2,
+    "name": "Objectif 2",
+    "description": "C'est un peu plus difficile",
+    "reward": 15
+  },
+  {
+    "id": 3,
+    "name": "Objectif 3",
+    "description": "C'est pas facile !",
+    "reward": 30
+  },
+  {
+    "id": 4,
+    "name": "Facile",
+    "description": "Avoir le sourir 😁",
+    "reward": 3
+  },
+  {
+    "id": 5,
+    "name": "Petit effort",
+    "description": "Être nice 👧",
+    "reward": 15
+  },
+  {
+    "id": 6,
+    "name": "Costaud 💪",
+    "description": "Je pense à tout 🧠",
+    "reward": 3
+  }
+]

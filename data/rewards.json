@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Nice",
+    "cost": 2
+  },
+  {
+    "id": 2,
+    "name": "Intéressant !",
+    "cost": 50
+  },
+  {
+    "id": 3,
+    "name": "Extraordinaire !",
+    "cost": 500
+  },
+  {
+    "id": 4,
+    "name": "3 bonbons 🍬",
+    "cost": 2
+  },
+  {
+    "id": 5,
+    "name": "1 gateau au chocolat 🍫",
+    "cost": 50
+  },
+  {
+    "id": 6,
+    "name": "Le truc de ouff 🎁",
+    "cost": 500
+  }
+]

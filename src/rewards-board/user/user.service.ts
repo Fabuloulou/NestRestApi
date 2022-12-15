@@ -71,6 +71,15 @@ export class UserService {
         return this.getUser(user.id);
     }
 
+    public finalizeReview(userId: number): User {
+        const user: User = this.getUser(userId);
+
+        user.lastReviewDate = new Date();
+        this.update(user);
+
+        return this.getUser(userId);
+    }
+
     private update(userToUpdate: User): void {
         const users = this.getAll();
 

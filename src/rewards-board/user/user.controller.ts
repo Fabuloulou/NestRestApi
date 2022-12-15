@@ -25,4 +25,9 @@ export class UserController {
     public consumeReward(@Param('userId', ParseIntPipe) userId: number, @Param('rewardId', ParseIntPipe) rewardId: number): User {
         return this._userService.consumeReward(userId, rewardId);
     }
+
+    @Patch(':userId/review')
+    public finalizeReview(@Param('userId', ParseIntPipe) userId: number): User {
+        return this._userService.finalizeReview(userId);
+    }
 }

@@ -13,4 +13,5 @@ export interface User {
     rewardsConsumed: UserHistory[];
     creationDate?: Date;
     lastModificationDate?: Date;
+    lastReviewDate?: Date;
 }

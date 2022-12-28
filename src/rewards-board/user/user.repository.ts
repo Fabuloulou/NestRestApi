@@ -1,31 +1,32 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { User } from './models/user.interface';
 const fs = require('fs');
 
 @Injectable()
 export class UserRepository {
+    private readonly _logger = new Logger(UserRepository.name);
     private readonly _users_filepath = 'data/users.json';
 
     public loadUsers(): User[] {
-        // TODO : logger
+        this._logger.debug('Loading all user from ' + this._users_filepath + '...');
         const raw = fs.readFileSync(this._users_filepath, 'utf8');
 
         try {
-            return JSON.parse(raw);
+            const users = JSON.parse(raw);
+            this._logger.debug(users.length + ' users loaded !');
+            return users;
         } catch (err) {
-            console.log('Content: ', raw);
-            console.log('Error while loading users. ', err);
-            throw new InternalServerErrorException('Erreur lors de la lecture des utilisateurs');
+            throw new InternalServerErrorException('Erreur lors de la lecture des utilisateurs', err);
         }
     }
 
     public writeUsers(users: User[]): void {
-        // TODO : logger
+        this._logger.debug('Writting users to ' + this._users_filepath + '...');
         try {
             fs.writeFileSync(this._users_filepath, JSON.stringify(users));
+            this._logger.debug('Users writed !');
         } catch (err) {
-            console.log('Error while writting users. ', err);
-            throw new InternalServerErrorException("Erreur lors de l'écriture des utilisateurs");
+            throw new InternalServerErrorException("Erreur lors de l'écriture des utilisateurs", err);
         }
     }
 }

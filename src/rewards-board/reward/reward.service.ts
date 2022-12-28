@@ -1,15 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import * as filedatas_rewards from 'data/rewards.json';
 import { Reward } from './models/reward.interface';
+import { RewardRepository } from './reward.repository';
 
 @Injectable()
 export class RewardService {
+    public constructor(private _rewardRepository: RewardRepository) {}
+
     public getAll(): Reward[] {
-        return filedatas_rewards;
+        return this._rewardRepository.loadRewards();
     }
 
     public getById(id: number): Reward {
-        const filtered: Reward[] = filedatas_rewards.filter((reward) => id === reward.id);
+        const filtered: Reward[] = this.getAll().filter((reward) => id === reward.id);
         if (filtered.length === 0) throw new NotFoundException("La récompense d'id=" + id + " n'a pas été trouvé");
         else return filtered[0];
     }

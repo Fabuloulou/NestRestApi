@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Objective } from '../objective/models/objective.interface';
 import { ObjectiveService } from '../objective/objective.service';
 import { RewardService } from '../reward/reward.service';
@@ -7,6 +7,8 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
+    private readonly logger = new Logger(UserService.name);
+
     public constructor(
         private readonly _userRepository: UserRepository,
         private readonly _objectiveService: ObjectiveService,
@@ -14,22 +16,18 @@ export class UserService {
     ) {}
 
     public getAll(): User[] {
-        // TODO logger
         return this._userRepository.loadUsers();
     }
 
     public getUser(id: number): User {
-        // TODO logger
         const filtered: User[] = this.getAll().filter((user) => id === user.id);
         if (filtered.length === 0) throw new NotFoundException("L'utilisateur d'ID=" + id + " n'a pas été trouvé");
         else return filtered[0];
     }
 
     public addAchievement(userId: number, objectiveId: number): User {
-        // TODO logger
         const user: User = this.getUser(userId);
         const objective: Objective = this._objectiveService.getById(objectiveId);
-        const start = user.currentPoints;
 
         if (!user.objectiveIds.includes(objectiveId)) {
             throw new BadRequestException("L'objectif " + objective.name + " n'est pas un objectif de " + user.lastName);
@@ -81,6 +79,7 @@ export class UserService {
     }
 
     private update(userToUpdate: User): void {
+        this.logger.debug('Updating user ' + userToUpdate.id);
         const users = this.getAll();
 
         // Vérification que l'utilisateur existe

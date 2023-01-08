@@ -1,32 +1,146 @@
 [
-  {
-    "id": 1,
-    "name": "Nice",
-    "cost": 2
-  },
-  {
-    "id": 2,
-    "name": "Intéressant !",
-    "cost": 50
-  },
-  {
-    "id": 3,
-    "name": "Extraordinaire !",
-    "cost": 500
-  },
-  {
-    "id": 4,
-    "name": "3 bonbons 🍬",
-    "cost": 2
-  },
-  {
-    "id": 5,
-    "name": "1 gateau au chocolat 🍫",
-    "cost": 50
-  },
-  {
-    "id": 6,
-    "name": "Le truc de ouff 🎁",
-    "cost": 500
-  }
+    {
+        "id": 1,
+        "name": "2 bonbons 🍬",
+        "cost": 2,
+        "limit": {
+            "frequency": "day",
+            "limit": 1
+        }
+    },
+    {
+        "id": 2,
+        "name": "Un tatoo",
+        "cost": 2,
+        "limit": {
+            "frequency": "day",
+            "limit": 1
+        }
+    },
+    {
+        "id": 3,
+        "name": "Lecture du soir : 10 min en plus 📖",
+        "cost": 3,
+        "limit": {
+            "frequency": "day",
+            "limit": 1
+        }
+    },
+    {
+        "id": 4,
+        "name": "Lecture par papa ou maman : 5 min en plus 📖",
+        "cost": 50,
+        "limit": {
+            "frequency": "day",
+            "limit": 1
+        }
+    },
+    {
+        "id": 5,
+        "name": "10 minutes d'écran en plus 📱",
+        "cost": 3,
+        "limit": {
+            "frequency": "day",
+            "limit": 1
+        }
+    },
+    {
+        "id": 6,
+        "name": "Une glace en dessert 🍨",
+        "cost": 10,
+        "limit": {
+            "frequency": "week",
+            "limit": 1
+        }
+    },
+    {
+        "id": 7,
+        "name": "Je choisi un repas 🍽",
+        "cost": 15,
+        "limit": {
+            "frequency": "week",
+            "limit": 1
+        }
+    },
+    {
+        "id": 8,
+        "name": "Sortie : piscine le dimanche matin 🏊‍♀️",
+        "cost": 30,
+        "limit": {
+            "frequency": "month",
+            "limit": 1
+        }
+    },
+    {
+        "id": 9,
+        "name": "Activité : un film le soir avec papa/maman le vendredi ou samedi soir 📺",
+        "cost": 50,
+        "limit": {
+            "frequency": "month",
+            "limit": 2
+        }
+    },
+    {
+        "id": 10,
+        "name": "Achat : un livre 📕",
+        "cost": 100,
+        "limit": {
+            "frequency": "month",
+            "limit": 1
+        }
+    },
+    {
+        "id": 11,
+        "name": "Sortie : cinéma 📺",
+        "cost": 200,
+        "limit": {
+            "frequency": "month",
+            "limit": 1
+        }
+    },
+    {
+        "id": 12,
+        "name": "Invitation : un copain pour une matinée / après midi 🧒",
+        "cost": 200,
+        "limit": {
+            "frequency": "month",
+            "limit": 1
+        }
+    },
+    {
+        "id": 13,
+        "name": "Invitation : un copain pour une soirée pyjama 🛌",
+        "cost": 300,
+        "limit": {
+            "frequency": "month",
+            "limit": 1
+        }
+    },
+    {
+        "id": 14,
+        "name": "Sortie : patinoire ⛸",
+        "cost": 300,
+        "limit": {
+            "frequency": "year",
+            "limit": 4
+        }
+    },
+    {
+        "id": 15,
+        "name": "Activité : Monkey Parc, Activ Parc, Hoppy Parc 🎳",
+        "cost": 200,
+        "limit": {
+            "frequency": "year",
+            "limit": 4
+        }
+    },
+    {
+        "id": 16,
+        "name": "Sortie : State Toulousain 🏈 / Stadium ⚽",
+        "cost": 500,
+        "limit": {
+            "frequency": "year",
+            "limit": 2
+        }
+    }
 ]

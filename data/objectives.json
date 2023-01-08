@@ -1,49 +1,49 @@
 [
     {
         "id": 1,
-        "name": "Objectif 1",
-        "description": "C'est pas si dur...",
-        "reward": 3,
-        "reservedTo": [],
+        "name": "Je suis douché avant 18h30 ou de suite en rentrant du foot",
+        "description": "Je gagne mes points si je suis sorti de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes). Les jours de foot, je me douche dès que je rentre.",
+        "reward": 2,
+        "reservedTo": ["MATHIS"],
         "forbidenTo": []
     },
     {
         "id": 2,
-        "name": "Objectif 2",
-        "description": "C'est un peu plus difficile",
-        "reward": 15,
+        "name": "Je suis douchée avant 18h30",
+        "description": "Je gagne mes points si je suis sortie de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes).",
+        "reward": 2,
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 3,
-        "name": "Objectif 3",
-        "description": "C'est pas facile !",
-        "reward": 30,
+        "name": "Je suis prêt avant 8H les matins d'école",
+        "description": "Je gagne mes points si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
+        "reward": 2,
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 4,
-        "name": "Facile",
-        "description": "Avoir le sourir 😁",
+        "name": "Je vais me laver les dents de suite après le repas du soir",
+        "description": "Je gagne mes points si je pars me laver les dents quand j'ai fini mon repas et que je descends de table",
         "reward": 3,
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 5,
-        "name": "Petit effort",
-        "description": "Être nice 👧",
-        "reward": 15,
+        "name": "J'ai les cheveux attachés à chaque début de repas",
+        "description": "Je gagne mes points si pour chacun des repas de la journée (matin, midi et soir) j'ai les cheveux attachés",
+        "reward": 1,
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 6,
-        "name": "Costaud 💪",
-        "description": "Je pense à tout 🧠",
-        "reward": 3,
+        "name": "Je joue avec ma soeur sans que mes parents n'interviennent",
+        "description": "Je gagne mes points pour chaque demie journée à la maison où j'ai joué avec ma soeur, sans que mes parents n'ai eu besoin d'intervenir",
+        "reward": 5,
         "reservedTo": [],
         "forbidenTo": []
     }

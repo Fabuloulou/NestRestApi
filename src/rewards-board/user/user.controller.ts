@@ -26,6 +26,12 @@ export class UserController {
         return this._userService.addAchievement(userId, objectiveId);
     }
 
+    @Patch(':userId/bonus/:bonusPoints')
+    public addBonus(@Param('userId', ParseIntPipe) userId: number, @Param('bonusPoints', ParseIntPipe) bonusPoints: number): User {
+        this.logger.log('PATCH request received. Adding ' + bonusPoints + ' bonus points to user with ID=' + userId + '...');
+        return this._userService.addBonus(userId, bonusPoints);
+    }
+
     @Patch(':userId/reward/:rewardId')
     public consumeReward(@Param('userId', ParseIntPipe) userId: number, @Param('rewardId', ParseIntPipe) rewardId: number): User {
         this.logger.log('PATCH request received. Adding consumption of reward with ID=' + rewardId + ' to user with ID=' + userId + '...');

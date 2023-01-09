@@ -44,6 +44,16 @@ export class UserService {
         return this.getUser(userId);
     }
 
+    public addBonus(userId: number, bonusPoints: number): User {
+        const user: User = this.getUser(userId);
+
+        user.currentPoints += bonusPoints;
+        user.totalPoints += bonusPoints;
+        this.update(user);
+
+        return this.getUser(userId);
+    }
+
     public consumeReward(userId: number, rewardId: number): User {
         const user: User = this.getUser(userId);
         const reward = this._rewardService.getById(rewardId);

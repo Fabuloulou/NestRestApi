@@ -38,7 +38,7 @@
     {
         "id": 5,
         "name": "10 minutes d'écran en plus 📱",
-        "cost": 3,
+        "cost": 5,
         "limit": {
             "frequency": "day",
             "limit": 1

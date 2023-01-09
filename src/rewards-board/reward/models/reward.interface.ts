@@ -4,4 +4,8 @@ export interface Reward {
     cost: number;
     reservedTo: number[];
     forbidenTo: number[];
+    limit: {
+        frequency: string;
+        limit: number;
+    };
 }

@@ -18,7 +18,7 @@ export class UserService {
     ) {}
 
     public getAll(): User[] {
-        return this._userRepository.loadUsers();
+        return this._userRepository.loadUsers().map((user) => this.initHistories(user));
     }
 
     public getUser(id: number): User {
@@ -44,11 +44,16 @@ export class UserService {
         return this.getUser(userId);
     }
 
-    public addBonus(userId: number, bonusPoints: number): User {
+    public addBonus(userId: number, bonusPoints: number, comment?: string): User {
         const user: User = this.getUser(userId);
 
         user.currentPoints += bonusPoints;
         user.totalPoints += bonusPoints;
+        user.bonusHistory.push({
+            date: new Date(),
+            bonus: bonusPoints,
+            comment: comment,
+        });
         this.update(user);
 
         return this.getUser(userId);
@@ -162,5 +167,12 @@ export class UserService {
             nextAuthorizedUsageDate = new Date(lastUsage);
         }
         return nextAuthorizedUsageDate;
+    }
+
+    private initHistories(user: User): User {
+        if (user.objectivesRiched === undefined) user.objectivesRiched = [];
+        if (user.rewardsConsumed === undefined) user.rewardsConsumed = [];
+        if (user.bonusHistory === undefined) user.bonusHistory = [];
+        return user;
     }
 }

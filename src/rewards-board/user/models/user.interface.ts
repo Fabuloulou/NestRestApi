@@ -11,6 +11,11 @@ export interface User {
     objectivesRiched: UserHistory[];
     rewardIds: number[];
     rewardsConsumed: UserHistory[];
+    bonusHistory: {
+        date: Date;
+        bonus: number;
+        comment?: string;
+    }[];
     creationDate?: Date;
     lastModificationDate?: Date;
     lastReviewDate?: Date;

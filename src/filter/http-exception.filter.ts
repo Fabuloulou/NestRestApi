@@ -18,7 +18,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
             timestamp: new Date().toISOString(),
             endpoint: request.url,
         };
-
+        console.error(exception);
         this.logger.warn(`${statusCode} ${message}`);
 
         response.status(statusCode).json(body);

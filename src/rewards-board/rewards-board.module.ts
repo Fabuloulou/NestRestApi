@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { LoginController } from './login/login.controller';
+import { LoginService } from './login/login.service';
 import { ObjectiveController } from './objective/objective.controller';
 import { ObjectiveRepository } from './objective/objective.repository';
 import { ObjectiveService } from './objective/objective.service';
@@ -10,7 +12,7 @@ import { UserRepository } from './user/user.repository';
 import { UserService } from './user/user.service';
 
 @Module({
-    providers: [UserService, RewardService, ObjectiveService, UserRepository, RewardRepository, ObjectiveRepository],
-    controllers: [UserController, ObjectiveController, RewardController],
+    providers: [LoginService, UserService, RewardService, ObjectiveService, UserRepository, RewardRepository, ObjectiveRepository],
+    controllers: [LoginController, UserController, ObjectiveController, RewardController],
 })
 export class RewardsBoardModule {}

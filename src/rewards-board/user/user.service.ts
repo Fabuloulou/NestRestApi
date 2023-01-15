@@ -87,7 +87,7 @@ export class UserService {
         if (lastUsage !== undefined) {
             const nextUsageDateMin = this.getNextAuthorizedUsageDate(reward, lastUsage.date);
 
-            if (nextUsageDateMin.getTime() > new Date().getTime()) {
+            if (nextUsageDateMin !== null && nextUsageDateMin.getTime() > new Date().getTime()) {
                 throw new BadRequestException(
                     user.lastName +
                         ' a déjà utilisé la récompense ' +
@@ -132,41 +132,46 @@ export class UserService {
         this._userRepository.writeUsers(tmp);
     }
 
-    private getNextAuthorizedUsageDate(reward: Reward, lastUsage: Date): Date {
-        if (!lastUsage) lastUsage = new Date(1900, 0, 1);
-        else lastUsage = new Date(lastUsage);
+    private getNextAuthorizedUsageDate(reward: Reward, lastUsage: Date): Date | null {
+        let value: Date | null = null;
 
-        let nextAuthorizedUsageDate = new Date(lastUsage);
-        if (reward.limit) {
-            let diff = 0;
-            const next = new Date(lastUsage);
+        if (lastUsage !== null && lastUsage !== undefined) {
+            lastUsage = new Date(lastUsage);
 
-            switch (reward.limit.frequency) {
-                case 'day':
-                    next.setDate(next.getDate() + 1);
-                    diff = next.getTime() - lastUsage.getTime();
-                    break;
-                case 'week':
-                    next.setDate(next.getDate() + 7);
-                    diff = next.getTime() - lastUsage.getTime();
-                    break;
-                case 'month':
-                    next.setMonth(next.getMonth() + 1);
-                    diff = next.getTime() - lastUsage.getTime();
-                    break;
-                case 'year':
-                    next.setFullYear(next.getFullYear() + 1);
-                    diff = next.getTime() - lastUsage.getTime();
-                    break;
-                default:
-                    nextAuthorizedUsageDate = new Date(2100, 0, 1);
+            let nextAuthorizedUsageDate = new Date(lastUsage);
+            if (reward.limit) {
+                let diff = 0;
+                const next = new Date(lastUsage);
+
+                switch (reward.limit.frequency) {
+                    case 'day':
+                        next.setDate(next.getDate() + 1);
+                        diff = next.getTime() - lastUsage.getTime();
+                        break;
+                    case 'week':
+                        next.setDate(next.getDate() + 7);
+                        diff = next.getTime() - lastUsage.getTime();
+                        break;
+                    case 'month':
+                        next.setMonth(next.getMonth() + 1);
+                        diff = next.getTime() - lastUsage.getTime();
+                        break;
+                    case 'year':
+                        next.setFullYear(next.getFullYear() + 1);
+                        diff = next.getTime() - lastUsage.getTime();
+                        break;
+                    default:
+                        nextAuthorizedUsageDate = new Date(2100, 0, 1);
+                }
+                nextAuthorizedUsageDate.setTime(nextAuthorizedUsageDate.getTime() + diff / reward.limit.limit);
+                // Let's authorized the reward from midnight
+                nextAuthorizedUsageDate.setHours(0);
+                nextAuthorizedUsageDate.setMinutes(0);
+                nextAuthorizedUsageDate.setSeconds(0);
+                value = nextAuthorizedUsageDate;
             }
-            nextAuthorizedUsageDate.setTime(nextAuthorizedUsageDate.getTime() + diff / reward.limit.limit);
-        } else {
-            // No limit, let's return a past date
-            nextAuthorizedUsageDate = new Date(lastUsage);
         }
-        return nextAuthorizedUsageDate;
+        return value;
     }
 
     private initHistories(user: User): User {

@@ -3,8 +3,7 @@ import { Objective } from '../objective/models/objective.interface';
 import { ObjectiveService } from '../objective/objective.service';
 import { Reward } from '../reward/models/reward.interface';
 import { RewardService } from '../reward/reward.service';
-import { UserHistory } from './models/user-history.interface';
-import { User } from './models/user.interface';
+import { User, UserHistory } from './models/user.interface';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -18,7 +17,13 @@ export class UserService {
     ) {}
 
     public getAll(): User[] {
-        return this._userRepository.loadUsers().map((user) => this.initHistories(user));
+        return this._userRepository.loadUsers().map((user) => {
+            this.initHistories(user);
+            this.computeTotalPoints(user);
+            this.computeCurrentPoints(user);
+            this.migrateToNewModel(user);
+            return user;
+        });
     }
 
     public getUser(id: number): User {
@@ -31,7 +36,7 @@ export class UserService {
         const user: User = this.getUser(userId);
         const objective: Objective = this._objectiveService.getById(objectiveId);
 
-        if (!user.objectiveIds.includes(objectiveId)) {
+        if (!user.objectives.map((obj) => obj.id).includes(objectiveId)) {
             throw new BadRequestException("L'objectif " + objective.name + " n'est pas un objectif de " + user.lastName);
         }
 
@@ -63,7 +68,7 @@ export class UserService {
         const user: User = this.getUser(userId);
         const reward = this._rewardService.getById(rewardId);
 
-        if (!user.rewardIds.includes(reward.id)) {
+        if (!user.rewards.map((rwd) => rwd.id).includes(reward.id)) {
             throw new BadRequestException(user.lastName + ' ne peut pas utiliser la récompense ' + reward.name);
         }
 
@@ -174,10 +179,53 @@ export class UserService {
         return value;
     }
 
-    private initHistories(user: User): User {
+    private initHistories(user: User) {
         if (user.objectivesRiched === undefined) user.objectivesRiched = [];
         if (user.rewardsConsumed === undefined) user.rewardsConsumed = [];
         if (user.bonusHistory === undefined) user.bonusHistory = [];
-        return user;
+    }
+
+    private computeTotalPoints(user: User) {
+        const objectives = this._objectiveService.getAll();
+
+        const objectivesPoints = user.objectivesRiched
+            .map((hist) => {
+                const objective = objectives.find((obj) => obj.id === hist.id);
+                return objective === undefined ? 0 : objective.reward;
+            })
+            .reduce((previous, current) => previous + current, 0);
+        const bonusPoints = user.bonusHistory.map((hist) => hist.bonus).reduce((previous, current) => previous + current, 0);
+        user.totalPoints = objectivesPoints + bonusPoints;
+    }
+
+    private computeCurrentPoints(user: User) {
+        const rewards = this._rewardService.getAll();
+
+        const totalUsedPoints = user.rewardsConsumed
+            .map((hist) => {
+                const reward = rewards.find((rwd) => rwd.id === hist.id);
+                return reward === undefined ? 0 : reward.cost;
+            })
+            .reduce((previous, current) => previous + current, 0);
+        user.currentPoints = user.totalPoints - totalUsedPoints;
+    }
+
+    private migrateToNewModel(user: User) {
+        if (user.objectives?.length > 0) return user;
+
+        this._logger.log('Migration des objectifs de ' + user.lastName);
+        user.objectives = user.objectiveIds.map((id) => ({
+            id: id,
+            start: new Date(2023, 0, 1),
+            end: new Date(2023, 1, 1),
+        }));
+        this._logger.log('Migration des récompenses de ' + user.lastName);
+        user.rewards = user.rewardIds.map((id) => ({
+            id: id,
+            start: new Date(2023, 0, 1),
+            end: new Date(2023, 1, 1),
+        }));
+        delete user.objectiveIds;
+        delete user.rewardIds;
     }
 }

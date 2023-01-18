@@ -23,10 +23,19 @@ export class UserRepository {
     public writeUsers(users: User[]): void {
         this._logger.debug('Writting users to ' + this._users_filepath + '...');
         try {
-            fs.writeFileSync(this._users_filepath, JSON.stringify(users));
+            fs.writeFileSync(this._users_filepath, JSON.stringify(users, this.replacer));
             this._logger.debug('Users writed !');
         } catch (err) {
             throw new InternalServerErrorException("Erreur lors de l'écriture des utilisateurs", err);
         }
+    }
+
+    private replacer(key, value) {
+        // Delete calculated values
+        if (key == 'totalPoints') return undefined;
+        else if (key == 'currentPoints') return undefined;
+        else if (key == 'objectiveIds') return undefined;
+        else if (key == 'rewardIds') return undefined;
+        else return value;
     }
 }

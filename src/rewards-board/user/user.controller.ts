@@ -1,4 +1,5 @@
-import { Controller, Get, Logger, Param, ParseIntPipe, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, ParseIntPipe, Patch } from '@nestjs/common';
+import { AddAchievementRequestBody } from './models/api-interface';
 import { User } from './models/user.interface';
 import { UserService } from './user.service';
 
@@ -20,10 +21,18 @@ export class UserController {
         return this._userService.getUser(userId);
     }
 
-    @Patch(':userId/achievement/:objectiveId')
-    public addAchievement(@Param('userId', ParseIntPipe) userId: number, @Param('objectiveId', ParseIntPipe) objectiveId: number): User {
-        this.logger.log('PATCH request received. Adding achievement of objective with ID=' + objectiveId + ' to user with ID=' + userId + '...');
-        return this._userService.addAchievement(userId, objectiveId);
+    @Patch(':userId/achievement')
+    public addAchievement(@Param('userId', ParseIntPipe) userId: number, @Body() body: AddAchievementRequestBody): User {
+        this.logger.log(
+            'PATCH request received. Adding achievement of objective with ID=' +
+                body.objectiveId +
+                ' to user with ID=' +
+                userId +
+                ' on date=' +
+                body.date +
+                ' ...',
+        );
+        return this._userService.addAchievement(userId, body.objectiveId, body.date);
     }
 
     @Patch(':userId/bonus/:bonusPoints')

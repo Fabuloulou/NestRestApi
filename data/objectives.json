@@ -1,50 +1,106 @@
 [
-    {
-        "id": 1,
-        "name": "Je suis douché avant 18h30 ou de suite en rentrant du foot",
-        "description": "Je gagne mes points si je suis sorti de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes). Les jours de foot, je me douche dès que je rentre.",
-        "reward": 2,
-        "reservedTo": ["MATHIS"],
-        "forbidenTo": []
-    },
-    {
-        "id": 2,
-        "name": "Je suis douchée avant 18h30",
-        "description": "Je gagne mes points si je suis sortie de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes).",
-        "reward": 2,
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 3,
-        "name": "Je suis prêt avant 8H les matins d'école",
-        "description": "Je gagne mes points si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
-        "reward": 2,
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 4,
-        "name": "Je vais me laver les dents de suite après le repas du soir",
-        "description": "Je gagne mes points si je pars me laver les dents quand j'ai fini mon repas et que je descends de table",
-        "reward": 3,
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 5,
-        "name": "J'ai les cheveux attachés à chaque début de repas",
-        "description": "Je gagne mes points si pour chacun des repas de la journée (matin, midi et soir) j'ai les cheveux attachés",
-        "reward": 1,
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 6,
-        "name": "Je joue avec ma soeur sans que mes parents n'interviennent",
-        "description": "Je gagne mes points pour chaque demie journée à la maison où j'ai joué avec ma soeur, sans que mes parents n'ai eu besoin d'intervenir",
-        "reward": 5,
-        "reservedTo": [],
-        "forbidenTo": []
-    }
+  {
+    "id": 1,
+    "name": "Je suis douché avant 18h30 ou de suite en rentrant du foot",
+    "description": "Je gagne mes points si je suis sorti de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes). Les jours de foot, je me douche dès que je rentre.",
+    "reward": 2,
+    "reservedTo": ["MATHIS"],
+    "forbidenTo": []
+  },
+  {
+    "id": 2,
+    "name": "Je suis douchée avant 18h30",
+    "description": "Je gagne mes points si je suis sortie de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes).",
+    "reward": 2,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 3,
+    "name": "Je suis prêt avant 8H les matins d'école",
+    "description": "Je gagne mes points si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
+    "reward": 2,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 4,
+    "name": "Je vais me laver les dents de suite après le repas du soir",
+    "description": "Je gagne mes points si je pars me laver les dents quand j'ai fini mon repas et que je descends de table",
+    "reward": 3,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 5,
+    "name": "J'ai les cheveux attachés à chaque début de repas",
+    "description": "Je gagne mes points si pour chacun des repas de la journée (matin, midi et soir) j'ai les cheveux attachés",
+    "reward": 1,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 6,
+    "name": "Je joue avec ma soeur sans que mes parents n'interviennent",
+    "description": "Je gagne mes points pour chaque demie journée à la maison où j'ai joué avec ma soeur, sans que mes parents n'ai eu besoin d'intervenir",
+    "reward": 5,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 7,
+    "name": "J'ai les cheveux attachés au début du repas",
+    "description": "Je gagne mon point à chaque repas si avant de m'installer à table j'ai les cheveux attachés sans qu'on me l'ai demandé",
+    "reward": 1,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 8,
+    "name": "Je me douche dans le respect des heures et durée limites",
+    "description": "Je gagne mes points si je suis douché : en rentrant de l'ALAE (en moins de 15min) ou avant 18H30 les autres jours",
+    "reward": 2,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 9,
+    "name": "Je vais me laver les dents de suite après le repas du soir",
+    "description": "Je gagne mes points si je pars me laver les dents quand j'ai fini mon repas et que je descends de table",
+    "reward": 2,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 10,
+    "name": "Je suis prêt avant 8H les matins d'école",
+    "description": "Je gagne mon point si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
+    "reward": 1,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 11,
+    "name": "Je me douche dans le respect des heures et durée limites",
+    "description": "Je gagne mes points si je suis douché : en rentrant du foot (en moins de 15min), en rentrant de l'ALAE (en moins de 15min) ou avant 18H30 les autres jours",
+    "reward": 2,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 12,
+    "name": "Je limite mon temps de jeu avec ma soeur",
+    "description": "Je gagne mes points lorsque je limite mon temps de jeu avec ma soeur à 20 min maximum d'affilé, et que je me sépare ensuite au moins 30 min pour jouer seul",
+    "reward": 2,
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 13,
+    "name": "Je suis prêt avant 8H les matins d'école",
+    "description": "Je gagne mes points si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
+    "reward": 3,
+    "reservedTo": [],
+    "forbidenTo": []
+  }
 ]

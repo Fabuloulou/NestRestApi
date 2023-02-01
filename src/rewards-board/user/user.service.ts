@@ -32,7 +32,7 @@ export class UserService {
         else return filtered[0];
     }
 
-    public addAchievement(userId: number, objectiveId: number): User {
+    public addAchievement(userId: number, objectiveId: number, date?: Date): User {
         const user: User = this.getUser(userId);
         const objective: Objective = this._objectiveService.getById(objectiveId);
 
@@ -42,7 +42,8 @@ export class UserService {
 
         user.currentPoints += objective.reward;
         user.totalPoints += objective.reward;
-        user.objectivesRiched.push({ date: new Date(), id: objective.id });
+
+        user.objectivesRiched.push({ date: date ?? new Date(), id: objective.id });
 
         this.update(user);
 

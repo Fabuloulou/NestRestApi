@@ -16,16 +16,13 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
 No test
 
 ## Support
-
+No support
 
 ## Stay in touch
 
@@ -35,7 +32,6 @@ No test
 
 ## TODO
 - Sécurisation de l'accès avec Authentification
-- Refactoring des objectifs pour éviter les doublons lors des changements de valeur de récompense
-- Refactoring des récompenses pour éviter les doublons lors des changements de valeur de cout
-- Ajouter des API de suppression des objectifs réussis, des récompenses prises
-- Ajouter des API de création/modification des objectifs et des récompenses
+- Ajouter des écrans de suppression des objectifs réussis, des récompenses prises
+- Ajouter des écrans de création/modification des objectifs et des récompenses
+- Ajouter la possibilité de mettre de côté des points en vue de la création d'une cagnotte pour une récompense

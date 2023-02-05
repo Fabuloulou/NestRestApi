@@ -34,8 +34,6 @@ export class UserRepository {
         // Delete calculated values
         if (key == 'totalPoints') return undefined;
         else if (key == 'currentPoints') return undefined;
-        else if (key == 'objectiveIds') return undefined;
-        else if (key == 'rewardIds') return undefined;
         else return value;
     }
 }

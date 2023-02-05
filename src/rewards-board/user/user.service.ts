@@ -21,7 +21,6 @@ export class UserService {
             this.initHistories(user);
             this.computeTotalPoints(user);
             this.computeCurrentPoints(user);
-            this.migrateToNewModel(user);
             return user;
         });
     }
@@ -209,24 +208,5 @@ export class UserService {
             })
             .reduce((previous, current) => previous + current, 0);
         user.currentPoints = user.totalPoints - totalUsedPoints;
-    }
-
-    private migrateToNewModel(user: User) {
-        if (user.objectives?.length > 0) return user;
-
-        this._logger.log('Migration des objectifs de ' + user.lastName);
-        user.objectives = user.objectiveIds.map((id) => ({
-            id: id,
-            start: new Date(2023, 0, 1),
-            end: new Date(2023, 1, 1),
-        }));
-        this._logger.log('Migration des récompenses de ' + user.lastName);
-        user.rewards = user.rewardIds.map((id) => ({
-            id: id,
-            start: new Date(2023, 0, 1),
-            end: new Date(2023, 1, 1),
-        }));
-        delete user.objectiveIds;
-        delete user.rewardIds;
     }
 }

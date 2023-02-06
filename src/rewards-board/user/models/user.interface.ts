@@ -5,10 +5,8 @@ export interface User {
     birthDate?: Date;
     currentPoints: number;
     totalPoints: number;
-    objectiveIds: number[];
     objectives: Period[];
     objectivesRiched?: UserHistory[];
-    rewardIds: number[];
     rewards: Period[];
     rewardsConsumed?: UserHistory[];
     bonusHistory?: BonusHistory[];
@@ -20,6 +18,7 @@ export interface User {
 export interface UserHistory {
     date: Date;
     id: number;
+    value: number;
 }
 
 export interface BonusHistory {
@@ -32,4 +31,5 @@ export interface Period {
     id: number;
     start: Date;
     end: Date;
+    value: number;
 }

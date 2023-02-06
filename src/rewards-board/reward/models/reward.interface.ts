@@ -8,4 +8,5 @@ export interface Reward {
         frequency: string;
         limit: number;
     };
+    mergeWith?: number;
 }

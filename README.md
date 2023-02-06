@@ -32,6 +32,5 @@ No support
 
 ## TODO
 - Sécurisation de l'accès avec Authentification
-- Ajouter des écrans de suppression des objectifs réussis, des récompenses prises
-- Ajouter des écrans de création/modification des objectifs et des récompenses
-- Ajouter la possibilité de mettre de côté des points en vue de la création d'une cagnotte pour une récompense
+- Ajouter des API de suppression des objectifs réussis, des récompenses prises
+- Ajouter des API de création/modification des objectifs et des récompenses

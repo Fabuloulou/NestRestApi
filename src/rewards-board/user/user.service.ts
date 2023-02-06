@@ -16,13 +16,23 @@ export class UserService {
         private readonly _rewardService: RewardService,
     ) {}
 
+    public migrateUser() {
+        const users = this._userRepository.loadUsers();
+        this.migrateObjectives(users);
+        this.migrateRewards(users);
+        this._objectiveService.migrateObjectives();
+        this._rewardService.migrateRewards();
+    }
+
     public getAll(): User[] {
-        return this._userRepository.loadUsers().map((user) => {
+        const users = this._userRepository.loadUsers().map((user) => {
             this.initHistories(user);
             this.computeTotalPoints(user);
             this.computeCurrentPoints(user);
             return user;
         });
+
+        return users;
     }
 
     public getUser(id: number): User {
@@ -35,14 +45,13 @@ export class UserService {
         const user: User = this.getUser(userId);
         const objective: Objective = this._objectiveService.getById(objectiveId);
 
-        if (!user.objectives.map((obj) => obj.id).includes(objectiveId)) {
-            throw new BadRequestException("L'objectif " + objective.name + " n'est pas un objectif de " + user.lastName);
+        const time = date !== undefined ? new Date(date).getTime() : new Date().getTime();
+        const userObj = user.objectives.find((userObj) => userObj.id === objectiveId && userObj.start.getTime() <= time && userObj.end.getTime() > time);
+        if (userObj === undefined) {
+            throw new BadRequestException("L'objectif " + objective.name + " n'est pas un objectif actif de " + user.lastName);
         }
 
-        user.currentPoints += objective.reward;
-        user.totalPoints += objective.reward;
-
-        user.objectivesRiched.push({ date: date ?? new Date(), id: objective.id });
+        user.objectivesRiched.push({ date: date ?? new Date(), id: objective.id, value: userObj.value });
 
         this.update(user);
 
@@ -68,7 +77,9 @@ export class UserService {
         const user: User = this.getUser(userId);
         const reward = this._rewardService.getById(rewardId);
 
-        if (!user.rewards.map((rwd) => rwd.id).includes(reward.id)) {
+        const time = new Date().getTime();
+        const userReward = user.rewards.find((usrRwd) => usrRwd.id === rewardId && usrRwd.start.getTime() <= time && usrRwd.end.getTime() > time);
+        if (userReward === undefined) {
             throw new BadRequestException(user.lastName + ' ne peut pas utiliser la récompense ' + reward.name);
         }
 
@@ -106,7 +117,7 @@ export class UserService {
         }
 
         user.currentPoints -= reward.cost;
-        user.rewardsConsumed.push({ date: new Date(), id: reward.id });
+        user.rewardsConsumed.push({ date: new Date(), id: reward.id, value: userReward.value });
         this.update(user);
 
         return this.getUser(user.id);
@@ -186,27 +197,59 @@ export class UserService {
     }
 
     private computeTotalPoints(user: User) {
-        const objectives = this._objectiveService.getAll();
-
-        const objectivesPoints = user.objectivesRiched
-            .map((hist) => {
-                const objective = objectives.find((obj) => obj.id === hist.id);
-                return objective === undefined ? 0 : objective.reward;
-            })
-            .reduce((previous, current) => previous + current, 0);
+        const objectivesPoints = user.objectivesRiched.reduce((previous, current) => previous + current.value, 0);
         const bonusPoints = user.bonusHistory.map((hist) => hist.bonus).reduce((previous, current) => previous + current, 0);
         user.totalPoints = objectivesPoints + bonusPoints;
     }
 
     private computeCurrentPoints(user: User) {
-        const rewards = this._rewardService.getAll();
-
-        const totalUsedPoints = user.rewardsConsumed
-            .map((hist) => {
-                const reward = rewards.find((rwd) => rwd.id === hist.id);
-                return reward === undefined ? 0 : reward.cost;
-            })
-            .reduce((previous, current) => previous + current, 0);
+        const totalUsedPoints = user.rewardsConsumed.reduce((previous, current) => previous + current.value, 0);
         user.currentPoints = user.totalPoints - totalUsedPoints;
+    }
+
+    private migrateObjectives(users: User[]) {
+        const objectives = this._objectiveService.getAll();
+        users.forEach((user) => {
+            this._logger.warn('Migrate user ' + user.lastName + ' to new objective model...');
+            // Migration des objectifs à atteindre
+            user.objectives.forEach((objToMigrate) => {
+                const objective = objectives.find((obj) => objToMigrate.id === obj.id);
+                objToMigrate.value = objective.reward;
+                objToMigrate.id = objective.mergeWith ?? objToMigrate.id;
+            });
+
+            // Migration des objectifs réussis
+            user.objectivesRiched.forEach((successToMigrate) => {
+                const objective = objectives.find((obj) => successToMigrate.id === obj.id);
+                successToMigrate.value = objective.reward;
+                successToMigrate.id = objective.mergeWith ?? successToMigrate.id;
+            });
+            this._logger.warn('Success to migrate user ' + user.lastName + ' to new objective model !');
+        });
+        this._userRepository.writeUsers(users);
+        this._logger.log('Objectives of all users are migrated !');
+    }
+
+    private migrateRewards(users: User[]) {
+        const rewards = this._rewardService.getAll();
+        users.forEach((user) => {
+            this._logger.warn('Migrate user ' + user.lastName + ' to new reward model...');
+            // Migration des récompenses à atteindre
+            user.rewards.forEach((rwdToMigrate) => {
+                const reward = rewards.find((rwd) => rwdToMigrate.id === rwd.id);
+                rwdToMigrate.value = reward.cost;
+                rwdToMigrate.id = reward.mergeWith ?? rwdToMigrate.id;
+            });
+
+            // Migration des objectifs réussis
+            user.rewardsConsumed.forEach((rwdConsumed) => {
+                const reward = rewards.find((rwd) => rwdConsumed.id === rwd.id);
+                rwdConsumed.value = reward.cost;
+                rwdConsumed.id = reward.mergeWith ?? rwdConsumed.id;
+            });
+            this._logger.warn('Success to migrate user ' + user.lastName + ' to new reward model !');
+        });
+        this._userRepository.writeUsers(users);
+        this._logger.log('Rewards of all users are migrated !');
     }
 }

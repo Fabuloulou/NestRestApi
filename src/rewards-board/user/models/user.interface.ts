@@ -33,3 +33,36 @@ export interface Period {
     end: Date;
     value: number;
 }
+
+export interface UserObjective {
+    id: number;
+    name: string;
+    value: number;
+    success: number;
+}
+
+export interface DayUserObjectives {
+    day: Date;
+    objectives: UserObjective[];
+}
+
+export interface UserSummary {
+    currentWeek: PeriodSummary;
+    previousWeek: PeriodSummary;
+    currentMonth: PeriodSummary;
+    previousMonth: PeriodSummary;
+}
+
+export interface PeriodSummary {
+    totalWon: number;
+    totalUsed: number;
+    objectives: {
+        name: string;
+        success: number;
+        total: number;
+    }[];
+    rewards: {
+        name: string;
+        totalUse: number;
+    }[];
+}

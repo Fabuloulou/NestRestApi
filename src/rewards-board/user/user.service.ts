@@ -224,81 +224,93 @@ export class UserService {
         const rawDatas = this.getSummurayRawDatas(user, allObjectives, allRewards);
         const result = {
             currentWeek: {
-                totalWon: rawDatas.currentWeek.hits.map((hist) => hist.hit.value).reduce((previous, current) => previous + current, 0),
-                totalUsed: rawDatas.currentWeek.rewards.map((item) => item.hist.value).reduce((previous, current) => previous + current, 0),
-                objectives: rawDatas.currentWeek.objectives.map((obj) => {
-                    const count = rawDatas.currentWeek.hits.filter((item) => item.hit.id === obj.id).length;
+                totalWon: rawDatas.currentWeek.hits.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                totalUsed: rawDatas.currentWeek.rewards.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                objectives: rawDatas.currentWeek.objectiveIds.map((objId) => {
+                    const count = rawDatas.currentWeek.hits.filter((item) => item.id === objId).length;
                     return {
-                        name: allObjectives.find((item) => obj.id === item.id)?.name ?? 'Inconnu',
+                        name: allObjectives.find((item) => objId === item.id)?.name ?? 'Inconnu',
                         success: count,
-                        total: count * obj.value,
+                        total: rawDatas.currentWeek.hits
+                            .filter((hist) => hist.id === objId)
+                            .map((hist) => hist.value)
+                            .reduce((previous, current) => previous + current, 0),
                     };
                 }),
                 rewards: user.rewards
                     .map((userReward) => {
                         return {
                             name: allRewards.find((reward) => reward.id === userReward.id)?.name ?? 'Inconnu',
-                            totalUse: rawDatas.currentWeek.rewards.filter((tmp) => userReward.id === tmp.hist.id).length,
+                            totalUse: rawDatas.currentWeek.rewards.filter((tmp) => userReward.id === tmp.id).length,
                         };
                     })
                     .filter((item) => item.totalUse > 0),
             },
             previousWeek: {
-                totalWon: rawDatas.lastWeek.hits.map((hist) => hist.hit.value).reduce((previous, current) => previous + current, 0),
-                totalUsed: rawDatas.lastWeek.rewards.map((item) => item.hist.value).reduce((previous, current) => previous + current, 0),
-                objectives: rawDatas.lastWeek.objectives.map((obj) => {
-                    const count = rawDatas.lastWeek.hits.filter((item) => item.hit.id === obj.id).length;
+                totalWon: rawDatas.lastWeek.hits.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                totalUsed: rawDatas.lastWeek.rewards.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                objectives: rawDatas.lastWeek.objectiveIds.map((objId) => {
+                    const count = rawDatas.lastWeek.hits.filter((item) => item.id === objId).length;
                     return {
-                        name: allObjectives.find((item) => obj.id === item.id)?.name ?? 'Inconnu',
+                        name: allObjectives.find((item) => objId === item.id)?.name ?? 'Inconnu',
                         success: count,
-                        total: count * obj.value,
+                        total: rawDatas.lastWeek.hits
+                            .filter((hist) => hist.id === objId)
+                            .map((hist) => hist.value)
+                            .reduce((previous, current) => previous + current, 0),
                     };
                 }),
                 rewards: user.rewards
                     .map((userReward) => {
                         return {
                             name: allRewards.find((reward) => reward.id === userReward.id)?.name ?? 'Inconnu',
-                            totalUse: rawDatas.lastWeek.rewards.filter((tmp) => userReward.id === tmp.hist.id).length,
+                            totalUse: rawDatas.lastWeek.rewards.filter((tmp) => userReward.id === tmp.id).length,
                         };
                     })
                     .filter((item) => item.totalUse > 0),
             },
             currentMonth: {
-                totalWon: rawDatas.currentMonth.hits.map((hist) => hist.hit.value).reduce((previous, current) => previous + current, 0),
-                totalUsed: rawDatas.currentMonth.rewards.map((item) => item.hist.value).reduce((previous, current) => previous + current, 0),
-                objectives: rawDatas.currentMonth.objectives.map((obj) => {
-                    const count = rawDatas.currentMonth.hits.filter((item) => item.hit.id === obj.id).length;
+                totalWon: rawDatas.currentMonth.hits.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                totalUsed: rawDatas.currentMonth.rewards.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                objectives: rawDatas.currentMonth.objectiveIds.map((objId) => {
+                    const count = rawDatas.currentMonth.hits.filter((item) => item.id === objId).length;
                     return {
-                        name: allObjectives.find((item) => obj.id === item.id)?.name ?? 'Inconnu',
+                        name: allObjectives.find((item) => objId === item.id)?.name ?? 'Inconnu',
                         success: count,
-                        total: count * obj.value,
+                        total: rawDatas.currentMonth.hits
+                            .filter((hist) => hist.id === objId)
+                            .map((hist) => hist.value)
+                            .reduce((previous, current) => previous + current, 0),
                     };
                 }),
                 rewards: user.rewards
                     .map((userReward) => {
                         return {
                             name: allRewards.find((reward) => reward.id === userReward.id)?.name ?? 'Inconnu',
-                            totalUse: rawDatas.currentMonth.rewards.filter((tmp) => userReward.id === tmp.hist.id).length,
+                            totalUse: rawDatas.currentMonth.rewards.filter((tmp) => userReward.id === tmp.id).length,
                         };
                     })
                     .filter((item) => item.totalUse > 0),
             },
             previousMonth: {
-                totalWon: rawDatas.lastMonth.hits.map((hist) => hist.hit.value).reduce((previous, current) => previous + current, 0),
-                totalUsed: rawDatas.lastMonth.rewards.map((item) => item.hist.value).reduce((previous, current) => previous + current, 0),
-                objectives: rawDatas.lastMonth.objectives.map((obj) => {
-                    const count = rawDatas.lastMonth.hits.filter((item) => item.hit.id === obj.id).length;
+                totalWon: rawDatas.lastMonth.hits.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                totalUsed: rawDatas.lastMonth.rewards.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
+                objectives: rawDatas.lastMonth.objectiveIds.map((objId) => {
+                    const count = rawDatas.lastMonth.hits.filter((item) => item.id === objId).length;
                     return {
-                        name: allObjectives.find((item) => obj.id === item.id)?.name ?? 'Inconnu',
+                        name: allObjectives.find((item) => objId === item.id)?.name ?? 'Inconnu',
                         success: count,
-                        total: count * obj.value,
+                        total: rawDatas.lastMonth.hits
+                            .filter((hist) => hist.id === objId)
+                            .map((hist) => hist.value)
+                            .reduce((previous, current) => previous + current, 0),
                     };
                 }),
                 rewards: user.rewards
                     .map((userReward) => {
                         return {
                             name: allRewards.find((reward) => reward.id === userReward.id)?.name ?? 'Inconnu',
-                            totalUse: rawDatas.lastMonth.rewards.filter((tmp) => userReward.id === tmp.hist.id).length,
+                            totalUse: rawDatas.lastMonth.rewards.filter((tmp) => userReward.id === tmp.id).length,
                         };
                     })
                     .filter((item) => item.totalUse > 0),
@@ -392,6 +404,7 @@ export class UserService {
 
     private migrateObjectives(users: User[]) {
         const objectives = this._objectiveService.getAll();
+
         users.forEach((user) => {
             this._logger.warn(`Migrate user ${user.lastName} to new objective model...`);
             // Migration des objectifs à atteindre
@@ -415,6 +428,7 @@ export class UserService {
 
     private migrateRewards(users: User[]) {
         const rewards = this._rewardService.getAll();
+
         users.forEach((user) => {
             this._logger.warn(`Migrate user ${user.lastName} to new reward model...`);
             // Migration des récompenses à atteindre
@@ -450,96 +464,72 @@ export class UserService {
 
         return {
             currentWeek: {
-                objectives: user.objectives
-                    .filter(
-                        (obj) =>
-                            DateUtils.between(DateUtils.startOfWeek(today), obj.start, obj.end) ||
-                            DateUtils.between(DateUtils.endOfWeek(today), obj.start, obj.end),
-                    )
-                    .map((obj) => ({ id: obj.id, value: obj.value })),
-                hits: user.objectivesRiched
-                    .filter((hist) => DateUtils.sameWeek(hist.date, today))
-                    .map((hist) => ({
-                        hit: hist,
-                        objective: allObjectives.find((obj) => obj.id === hist.id) ?? null,
-                    })),
-                rewards: user.rewardsConsumed
-                    .filter((hist) => DateUtils.sameWeek(hist.date, today))
-                    .map((hist) => ({
-                        hist: hist,
-                        reward: allRewards.find((obj) => obj.id === hist.id) ?? null,
-                    })),
+                objectiveIds: [
+                    ...new Set(
+                        user.objectives
+                            .filter(
+                                (obj) =>
+                                    DateUtils.between(DateUtils.startOfWeek(today), obj.start, obj.end) ||
+                                    DateUtils.between(DateUtils.endOfWeek(today), obj.start, obj.end),
+                            )
+                            .map((obj) => obj.id),
+                    ),
+                ],
+                hits: user.objectivesRiched.filter((hist) => DateUtils.sameWeek(hist.date, today)),
+                rewards: user.rewardsConsumed.filter((hist) => DateUtils.sameWeek(hist.date, today)),
             },
             lastWeek: {
-                objectives: user.objectives
-                    .filter(
-                        (obj) =>
-                            DateUtils.between(DateUtils.startOfWeek(lastWeek), obj.start, obj.end) ||
-                            DateUtils.between(DateUtils.endOfWeek(lastWeek), obj.start, obj.end),
-                    )
-                    .map((obj) => ({ id: obj.id, value: obj.value })),
-                hits: user.objectivesRiched
-                    .filter((hist) => DateUtils.sameWeek(hist.date, lastWeek))
-                    .map((hist) => ({
-                        hit: hist,
-                        objective: allObjectives.find((obj) => obj.id === hist.id) ?? null,
-                    })),
-                rewards: user.rewardsConsumed
-                    .filter((hist) => DateUtils.sameWeek(hist.date, lastWeek))
-                    .map((hist) => ({
-                        hist: hist,
-                        reward: allRewards.find((obj) => obj.id === hist.id) ?? null,
-                    })),
+                objectiveIds: [
+                    ...new Set(
+                        user.objectives
+                            .filter(
+                                (obj) =>
+                                    DateUtils.between(DateUtils.startOfWeek(lastWeek), obj.start, obj.end) ||
+                                    DateUtils.between(DateUtils.endOfWeek(lastWeek), obj.start, obj.end),
+                            )
+                            .map((obj) => obj.id),
+                    ),
+                ],
+                hits: user.objectivesRiched.filter((hist) => DateUtils.sameWeek(hist.date, lastWeek)),
+                rewards: user.rewardsConsumed.filter((hist) => DateUtils.sameWeek(hist.date, lastWeek)),
             },
             currentMonth: {
-                objectives: user.objectives
-                    .filter(
-                        (obj) =>
-                            DateUtils.between(DateUtils.startOfMonth(today), obj.start, obj.end) ||
-                            DateUtils.between(DateUtils.endOfMonth(today), obj.start, obj.end),
-                    )
-                    .map((obj) => ({ id: obj.id, value: obj.value })),
-                hits: user.objectivesRiched
-                    .filter((hist) => DateUtils.sameMonth(hist.date, today))
-                    .map((hist) => ({
-                        hit: hist,
-                        objective: allObjectives.find((obj) => obj.id === hist.id) ?? null,
-                    })),
-                rewards: user.rewardsConsumed
-                    .filter((hist) => DateUtils.sameMonth(hist.date, today))
-                    .map((hist) => ({
-                        hist: hist,
-                        reward: allRewards.find((obj) => obj.id === hist.id) ?? null,
-                    })),
+                objectiveIds: [
+                    ...new Set(
+                        user.objectives
+                            .filter(
+                                (obj) =>
+                                    DateUtils.between(DateUtils.startOfMonth(today), obj.start, obj.end) ||
+                                    DateUtils.between(DateUtils.endOfMonth(today), obj.start, obj.end),
+                            )
+                            .map((obj) => obj.id),
+                    ),
+                ],
+                hits: user.objectivesRiched.filter((hist) => DateUtils.sameMonth(hist.date, today)),
+                rewards: user.rewardsConsumed.filter((hist) => DateUtils.sameMonth(hist.date, today)),
             },
             lastMonth: {
-                objectives: user.objectives
-                    .filter(
-                        (obj) =>
-                            DateUtils.between(DateUtils.startOfMonth(lastMonth), obj.start, obj.end) ||
-                            DateUtils.between(DateUtils.endOfMonth(lastMonth), obj.start, obj.end),
-                    )
-                    .map((obj) => ({ id: obj.id, value: obj.value })),
-                hits: user.objectivesRiched
-                    .filter((hist) => DateUtils.sameMonth(hist.date, lastMonth))
-                    .map((hist) => ({
-                        hit: hist,
-                        objective: allObjectives.find((obj) => obj.id === hist.id) ?? null,
-                    })),
-                rewards: user.rewardsConsumed
-                    .filter((hist) => DateUtils.sameMonth(hist.date, lastMonth))
-                    .map((hist) => ({
-                        hist: hist,
-                        reward: allRewards.find((obj) => obj.id === hist.id) ?? null,
-                    })),
+                objectiveIds: [
+                    ...new Set(
+                        user.objectives
+                            .filter(
+                                (obj) =>
+                                    DateUtils.between(DateUtils.startOfMonth(lastMonth), obj.start, obj.end) ||
+                                    DateUtils.between(DateUtils.endOfMonth(lastMonth), obj.start, obj.end),
+                            )
+                            .map((obj) => obj.id),
+                    ),
+                ],
+                hits: user.objectivesRiched.filter((hist) => DateUtils.sameMonth(hist.date, lastMonth)),
+                rewards: user.rewardsConsumed.filter((hist) => DateUtils.sameMonth(hist.date, lastMonth)),
             },
         };
     }
 }
 interface SummaryRawData {
-    objectives: { id: number; value: number }[];
-    hits: { hit: UserHistory; objective: Objective }[];
-    rewards: { hist: UserHistory; reward: Reward }[];
+    objectiveIds: number[];
+    hits: UserHistory[];
+    rewards: UserHistory[];
 }
 interface CumulativeSummaryRawData {
     currentWeek: SummaryRawData;

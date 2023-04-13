@@ -259,5 +259,14 @@
       "frequency": "year",
       "limit": 2
     }
+  },
+  {
+    "id": 29,
+    "name": "10 min de jeu après le lavage des dents 🃏",
+    "cost": 3,
+    "limit": {
+      "frequency": "day",
+      "limit": 1
+    }
   }
 ]

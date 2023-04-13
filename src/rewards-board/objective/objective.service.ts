@@ -8,7 +8,14 @@ export class ObjectiveService {
     public constructor(private _objectiveRepository: ObjectiveRepository) {}
 
     public getAll(): Objective[] {
-        return this._objectiveRepository.loadObjectives();
+        const objectives = this._objectiveRepository.loadObjectives();
+        // Marquage des doublons
+        objectives.forEach((obj) => {
+            if (obj.mergeWith === undefined) {
+                objectives.filter((tmp) => tmp.id !== obj.id && tmp.name === obj.name && tmp.mergeWith === undefined).map((tmp) => (tmp.mergeWith = obj.id));
+            }
+        });
+        return objectives;
     }
 
     public getById(id: number): Objective {

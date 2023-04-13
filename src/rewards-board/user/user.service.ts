@@ -18,14 +18,6 @@ export class UserService {
         private readonly _rewardService: RewardService,
     ) {}
 
-    public migrateUser() {
-        const users = this._userRepository.loadUsers();
-        this.migrateObjectives(users);
-        this.migrateRewards(users);
-        this._objectiveService.migrateObjectives();
-        this._rewardService.migrateRewards();
-    }
-
     public getAll(): User[] {
         const users = this._userRepository.loadUsers().map((user) => {
             this.initHistories(user);
@@ -221,7 +213,7 @@ export class UserService {
         const allObjectives = this._objectiveService.getAll();
         const allRewards = this._rewardService.getAll();
 
-        const rawDatas = this.getSummurayRawDatas(user, allObjectives, allRewards);
+        const rawDatas = this.getSummurayRawDatas(user);
         const result = {
             currentWeek: {
                 totalWon: rawDatas.currentWeek.hits.map((hist) => hist.value).reduce((previous, current) => previous + current, 0),
@@ -402,60 +394,12 @@ export class UserService {
         user.currentPoints = user.totalPoints - totalUsedPoints;
     }
 
-    private migrateObjectives(users: User[]) {
-        const objectives = this._objectiveService.getAll();
-
-        users.forEach((user) => {
-            this._logger.warn(`Migrate user ${user.lastName} to new objective model...`);
-            // Migration des objectifs à atteindre
-            user.objectives.forEach((objToMigrate) => {
-                const objective = objectives.find((obj) => objToMigrate.id === obj.id);
-                objToMigrate.value = objective.reward;
-                objToMigrate.id = objective.mergeWith ?? objToMigrate.id;
-            });
-
-            // Migration des objectifs réussis
-            user.objectivesRiched.forEach((successToMigrate) => {
-                const objective = objectives.find((obj) => successToMigrate.id === obj.id);
-                successToMigrate.value = objective.reward;
-                successToMigrate.id = objective.mergeWith ?? successToMigrate.id;
-            });
-            this._logger.warn(`Success to migrate user ${user.lastName} to new objective model !`);
-        });
-        this._userRepository.writeUsers(users);
-        this._logger.log('Objectives of all users are migrated !');
-    }
-
-    private migrateRewards(users: User[]) {
-        const rewards = this._rewardService.getAll();
-
-        users.forEach((user) => {
-            this._logger.warn(`Migrate user ${user.lastName} to new reward model...`);
-            // Migration des récompenses à atteindre
-            user.rewards.forEach((rwdToMigrate) => {
-                const reward = rewards.find((rwd) => rwdToMigrate.id === rwd.id);
-                rwdToMigrate.value = reward.cost;
-                rwdToMigrate.id = reward.mergeWith ?? rwdToMigrate.id;
-            });
-
-            // Migration des objectifs réussis
-            user.rewardsConsumed.forEach((rwdConsumed) => {
-                const reward = rewards.find((rwd) => rwdConsumed.id === rwd.id);
-                rwdConsumed.value = reward.cost;
-                rwdConsumed.id = reward.mergeWith ?? rwdConsumed.id;
-            });
-            this._logger.warn(`Success to migrate user ${user.lastName} to new reward model !`);
-        });
-        this._userRepository.writeUsers(users);
-        this._logger.log('Rewards of all users are migrated !');
-    }
-
     private getRewardProgress(user: User, cost: number): number {
         const progess = (user.currentPoints / cost) * 100;
         return progess > 100 ? 100 : progess;
     }
 
-    private getSummurayRawDatas(user: User, allObjectives: Objective[], allRewards: Reward[]): CumulativeSummaryRawData {
+    private getSummurayRawDatas(user: User): CumulativeSummaryRawData {
         const today = new Date();
         const lastWeek = new Date(today);
         lastWeek.setDate(lastWeek.getDate() - 7);

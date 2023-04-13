@@ -17,12 +17,6 @@ export class UserController {
         return this._userService.getAll().map((user) => UserMapper.toDto(user));
     }
 
-    @Get('migrate')
-    public migrateusers() {
-        this.logger.log('PATCH request received. Migrate all users...');
-        this._userService.migrateUser();
-    }
-
     @Get(':userId')
     public getUser(@Param('userId', ParseIntPipe) userId: number): UserDto {
         this.logger.log('GET request received. Loading user with ID=' + userId + '...');

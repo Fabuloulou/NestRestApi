@@ -8,7 +8,14 @@ export class RewardService {
     public constructor(private _rewardRepository: RewardRepository) {}
 
     public getAll(): Reward[] {
-        return this._rewardRepository.loadRewards();
+        const rewards = this._rewardRepository.loadRewards();
+        // Marquage des doublons
+        rewards.forEach((rwd) => {
+            if (rwd.mergeWith === undefined) {
+                rewards.filter((tmp) => tmp.id !== rwd.id && tmp.name === rwd.name && tmp.mergeWith === undefined).map((tmp) => (tmp.mergeWith = rwd.id));
+            }
+        });
+        return rewards;
     }
 
     public getById(id: number): Reward {

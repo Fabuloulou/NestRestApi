@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { DatUtils as DateUtils } from '../../utils/DateUtils';
+import { DateUtils } from '../../utils/DateUtils';
 import { Objective } from '../objective/models/objective.interface';
 import { ObjectiveService } from '../objective/objective.service';
 import { Reward } from '../reward/models/reward.interface';

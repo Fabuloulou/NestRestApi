@@ -1,4 +1,4 @@
-export class DatUtils {
+export class DateUtils {
     public static startOfDay(date: Date): Date {
         const tmp = new Date(date);
         return new Date(tmp.setUTCHours(0, 0, 0, 0));

@@ -4,8 +4,11 @@ export interface Reward {
     cost: number;
     reservedTo: number[];
     forbidenTo: number[];
-    limit: {
-        frequency: string;
-        limit: number;
-    };
+    limit: RewardLimit;
+    mergeWith?: number;
+}
+
+export interface RewardLimit {
+    frequency: string;
+    limit: number;
 }

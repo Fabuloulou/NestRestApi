@@ -103,5 +103,12 @@
         "description": "Je gagne mes points si ma chambre est rangée avant de commencer ma lecture du soir (Vêtements propres et sales, jouets, doudous, bureau, table de nuit)",
         "reservedTo": [],
         "forbidenTo": []
+    },
+    {
+        "id": 24,
+        "name": "Je prépare mes affaires de foot la veille",
+        "description": "Je gagne mes points si mes affaires de foot sont prêtes la veille, sans aide et sans rappel de mes parents",
+        "reservedTo": [],
+        "forbidenTo": []
     }
 ]

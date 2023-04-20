@@ -124,23 +124,6 @@ export class UserService {
         return dates.map((day) => this.getDayObjectives(user, objectives, day));
     }
 
-    private getDayObjectives(user: User, objectives: Objective[], date: Date): DayUserObjectives {
-        this._logger.debug(`Computing objectives of ${user.lastName} for ${new Date(date).toLocaleDateString()}`);
-        const userPeriods = user.objectives.filter((period) => DateUtils.isAfter(date, period.start) && DateUtils.isBefore(date, period.end));
-        // Charger les objectifs pour avoir le nom
-        const userObjectives = userPeriods.map((obj) => obj.id).map((objId) => objectives.find((obj) => obj.id === objId));
-
-        return {
-            day: date,
-            objectives: userPeriods.map((period) => ({
-                id: period.id,
-                name: userObjectives.find((obj) => obj.id === period.id).name,
-                value: period.value,
-                success: user.objectivesRiched.filter((hit) => hit.id === period.id && DateUtils.sameDay(hit.date, date)).length ?? 0,
-            })),
-        };
-    }
-
     public getRewards(userId: number, activeOnly = true): UserRewardDto[] {
         console.log(`getRewards with activeOnly=${activeOnly}`);
 
@@ -182,7 +165,9 @@ export class UserService {
                 ...objectiveIdsRiched.map((objId) => ({
                     id: objId,
                     name: allObjectives.find((obj) => obj.id === objId)?.name ?? 'Inconnu',
-                    value: user.objectives.find((userObj) => userObj.id === objId)?.value ?? 0,
+                    value:
+                        user.objectives.find((userObj) => userObj.id === objId && DateUtils.between(user.lastReviewDate, userObj.start, userObj.end))?.value ??
+                        0,
                     success: history.filter((hist) => hist.id === objId).length,
                 })),
             );
@@ -326,6 +311,23 @@ export class UserService {
         const tmp = users.filter((user) => user.id !== userToUpdate.id);
         tmp.push(userToUpdate);
         this._userRepository.writeUsers(tmp);
+    }
+
+    private getDayObjectives(user: User, objectives: Objective[], date: Date): DayUserObjectives {
+        this._logger.debug(`Computing objectives of ${user.lastName} for ${new Date(date).toLocaleDateString()}`);
+        const userPeriods = user.objectives.filter((period) => DateUtils.isAfter(date, period.start) && DateUtils.isBefore(date, period.end));
+        // Charger les objectifs pour avoir le nom
+        const userObjectives = userPeriods.map((obj) => obj.id).map((objId) => objectives.find((obj) => obj.id === objId));
+
+        return {
+            day: date,
+            objectives: userPeriods.map((period) => ({
+                id: period.id,
+                name: userObjectives.find((obj) => obj.id === period.id).name,
+                value: period.value,
+                success: user.objectivesRiched.filter((hit) => hit.id === period.id && DateUtils.sameDay(hit.date, date)).length ?? 0,
+            })),
+        };
     }
 
     private getLastRewardUsage(history: UserHistory[], rewardId: number): Date | undefined {

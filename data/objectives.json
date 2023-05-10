@@ -65,21 +65,21 @@
     {
         "id": 14,
         "name": "Je passe du temps avec ma soeur sans intervention des mes parents",
-        "description": "Je gagne mes points quand je passe du temps à la maison avec ma soeur et que mes parents n’ont pas besoin d’intervenir",
+        "description": "Je gagne mes points quand je passe du temps à la maison avec ma soeur et que mes parents n'ont pas besoin d'intervenir",
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 15,
-        "name": "J’utilise le STOP pour exprimer mes émotions",
+        "name": "J'utilise le STOP pour exprimer mes émotions",
         "description": "Je gagne mes points si je réussi après UNE demande de mes parents, à exprimer mes émotions avec la méthode STOP - Réflexion - Action. ",
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 16,
-        "name": "J’ai les cheveux attachés avant le début du repas",
-        "description": "Je gagne mes points si j'ai les cheveux attachés AVANT le début du repas, sans qu’on me l’ai demandé",
+        "name": "J'ai les cheveux attachés avant le début du repas",
+        "description": "Je gagne mes points si j'ai les cheveux attachés AVANT le début du repas, sans qu'on me l'ai demandé",
         "reservedTo": [],
         "forbidenTo": []
     },
@@ -108,6 +108,34 @@
         "id": 24,
         "name": "Je prépare mes affaires de foot la veille",
         "description": "Je gagne mes points si mes affaires de foot sont prêtes la veille, sans aide et sans rappel de mes parents",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 25,
+        "name": "J'indique calmement et clairement mes émotions et mes besoins",
+        "description": "Je gagne mes points à chaque fois que j'utilise la méthode OSBD pour exprimer mes émotions et mes besoins",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 26,
+        "name": "Je me calme efficacement",
+        "description": "Je gagne mon point si chaque fois qu'on me le demande, j'utilise la respiration les yeux fermés, un livre, ou la mise à l'écart, pendant au moins  2 minutes.",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 27,
+        "name": "Je mange mon plat en moins de 15min",
+        "description": "Je gagne mes points si lors de chaque repas, j'ai terminé de manger mon plat principal en 15 min maximum",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 28,
+        "name": "J'applique le rituel de retour à la maison",
+        "description": "Je gagne mes points chaque fois que je rentre de l'école si : je range mes affaires, je me lave les mains, je prends un temps pour moi de 15min, seule de ma chambre",
         "reservedTo": [],
         "forbidenTo": []
     }

@@ -160,15 +160,14 @@ export class UserService {
 
         if (allObjectives.length > 0) {
             const history = user.objectivesRiched.filter((hist) => DateUtils.isAfter(hist.date, user.lastReviewDate));
-            const objectiveIdsRiched = [...new Set(history.map((hist) => hist.id))];
+            const objectiveIdsRiched = [...new Set(history)];
             hits.push(
-                ...objectiveIdsRiched.map((objId) => ({
-                    id: objId,
-                    name: allObjectives.find((obj) => obj.id === objId)?.name ?? 'Inconnu',
+                ...objectiveIdsRiched.map((success) => ({
+                    id: success.id,
+                    name: allObjectives.find((obj) => obj.id === success.id)?.name ?? 'Inconnu',
                     value:
-                        user.objectives.find((userObj) => userObj.id === objId && DateUtils.between(user.lastReviewDate, userObj.start, userObj.end))?.value ??
-                        0,
-                    success: history.filter((hist) => hist.id === objId).length,
+                        user.objectives.find((userObj) => userObj.id === success.id && DateUtils.between(success.date, userObj.start, userObj.end))?.value ?? 0,
+                    success: history.filter((hist) => hist.id === success.id).length,
                 })),
             );
 

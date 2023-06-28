@@ -5,7 +5,7 @@ import { ObjectiveService } from '../objective/objective.service';
 import { Reward } from '../reward/models/reward.interface';
 import { RewardService } from '../reward/reward.service';
 import { UserObjectiveDto, UserReviewDto, UserRewardDto } from './dtos/user.dto';
-import { DayUserObjectives, User, UserHistory, UserSummary } from './models/user.interface';
+import { DayUserObjectives, Period, User, UserHistory, UserSummary } from './models/user.interface';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -39,10 +39,7 @@ export class UserService {
         const user: User = this.getUser(userId);
         const objective: Objective = this._objectiveService.getById(objectiveId);
 
-        const time = date !== undefined ? new Date(date).getTime() : new Date().getTime();
-        const userObj = user.objectives.find(
-            (userObj) => userObj.id === objectiveId && new Date(userObj.start).getTime() <= time && new Date(userObj.end).getTime() > time,
-        );
+        const userObj = this.findCurrentObjective(user.objectives, objectiveId, date !== undefined ? date : new Date());
         if (userObj === undefined) {
             throw new BadRequestException(`L'objectif ${objective.name} n'est pas un objectif actif de ${user.lastName}`);
         }
@@ -73,10 +70,7 @@ export class UserService {
         const user: User = this.getUser(userId);
         const reward = this._rewardService.getById(rewardId);
 
-        const time = new Date().getTime();
-        const userReward = user.rewards.find(
-            (usrRwd) => usrRwd.id === rewardId && new Date(usrRwd.start).getTime() <= time && new Date(usrRwd.end).getTime() > time,
-        );
+        const userReward = this.findCurrentReward(user.rewards, rewardId, new Date());
         if (userReward === undefined) {
             throw new BadRequestException(`${user.lastName} ne peut pas utiliser la récompense ${reward.name}`);
         }
@@ -152,6 +146,24 @@ export class UserService {
         });
     }
 
+    private groupHistories(histories: UserHistory[] | undefined | null): Map<string, Date[]> {
+        if (histories === null || histories === undefined) return new Map();
+        else {
+            const map = new Map<string, Date[]>();
+            histories.forEach((item) => {
+                const key = `id:${item.id},value:${item.value}`;
+                const dates = map.get(key);
+
+                if (!dates) {
+                    map.set(key, [item.date]);
+                } else {
+                    dates.push(item.date);
+                }
+            });
+            return map;
+        }
+    }
+
     public getWins(userId: number): UserReviewDto {
         const user: User = this.getUser(userId);
         const allObjectives = this._objectiveService.getAll();
@@ -159,16 +171,19 @@ export class UserService {
         const hits: UserObjectiveDto[] = [];
 
         if (allObjectives.length > 0) {
-            const history = user.objectivesRiched.filter((hist) => DateUtils.isAfter(hist.date, user.lastReviewDate));
-            const objectiveIdsRiched = [...new Set(history.map((hist) => hist.id))];
-            hits.push(
-                ...objectiveIdsRiched.map((objId) => ({
-                    id: objId,
-                    name: allObjectives.find((obj) => obj.id === objId)?.name ?? 'Inconnu',
-                    value: user.objectives.find((userObj) => userObj.id === objId)?.value ?? 0,
-                    success: history.filter((hist) => hist.id === objId).length,
-                })),
-            );
+            this.groupHistories(user.objectivesRiched.filter((hist) => DateUtils.isAfter(hist.date, user.lastReviewDate))).forEach((value, key) => {
+                const keyId = key.split(',')[0];
+                const keyValue = key.split(',')[1];
+
+                const id = +keyId.split(':')[1];
+                const histValue = +keyValue.split(':')[1];
+                hits.push({
+                    id: id,
+                    name: allObjectives.find((obj) => obj.id === id)?.name ?? 'Inconnu',
+                    value: histValue,
+                    success: value.length,
+                });
+            });
 
             // Push all bonus won
             hits.push(
@@ -468,6 +483,19 @@ export class UserService {
                 rewards: user.rewardsConsumed.filter((hist) => DateUtils.sameMonth(hist.date, lastMonth)),
             },
         };
+    }
+
+    private findCurrentInPeriods(periods: Period[], periodId: number, date = new Date()): Period | null {
+        const time = new Date(date).getTime();
+        return periods.find((period) => period.id === periodId && new Date(period.start).getTime() <= time && new Date(period.end).getTime() > time);
+    }
+
+    private findCurrentObjective(userObjectives: Period[], objectiveId: number, date = new Date()): Period | null {
+        return this.findCurrentInPeriods(userObjectives, objectiveId, date);
+    }
+
+    private findCurrentReward(userRewards: Period[], rewardId: number, date = new Date()): Period | null {
+        return this.findCurrentInPeriods(userRewards, rewardId, date);
     }
 }
 interface SummaryRawData {

@@ -1,7 +1,9 @@
 import { Controller, Get, Logger, Param, ParseIntPipe } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Objective } from './models/objective.interface';
 import { ObjectiveService } from './objective.service';
 
+@ApiTags('rewards-board')
 @Controller('rewards-board/objective')
 export class ObjectiveController {
     private readonly logger = new Logger(ObjectiveController.name);

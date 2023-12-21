@@ -4,10 +4,12 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { RewardsBoardModule } from './rewards-board/rewards-board.module';
+import { VehiculeTrackingModule } from './vehicule-tracking/vehicule-tracking.module';
 
 @Module({
     imports: [
         RewardsBoardModule,
+        VehiculeTrackingModule,
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'ui'),
             exclude: ['/api*'],

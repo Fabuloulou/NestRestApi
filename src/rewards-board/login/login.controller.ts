@@ -1,7 +1,9 @@
 import { Controller, Get, Logger, Param } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { LoginService } from './login.service';
 import { Principal } from './models/principal.interface';
 
+@ApiTags('rewards-board')
 @Controller('rewards-board/login')
 export class LoginController {
     private readonly logger = new Logger(LoginController.name);

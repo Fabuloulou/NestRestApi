@@ -138,5 +138,19 @@
         "description": "Je gagne mes points chaque fois que je rentre de l'école si : je range mes affaires, je me lave les mains, je prends un temps pour moi de 15min, seule de ma chambre",
         "reservedTo": [],
         "forbidenTo": []
+    },
+    {
+        "id": 29,
+        "name": "Je débarrasse ma table",
+        "description": "Je gagne mes points à chaque fois que j’ai débarrasser ma table (Assiettes, couverts, verre, serviette, tapis + nettoyage), pour tout le monde. (Hors petit déjeuné)",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 30,
+        "name": "Je mets la table",
+        "description": "Je gagne mes points si j’ai mis la table au moins une fois dans la journée (Tapis, assiettes, couverts, verres et serviettes)",
+        "reservedTo": [],
+        "forbidenTo": []
     }
 ]

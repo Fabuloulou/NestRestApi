@@ -1,7 +1,9 @@
 import { Controller, Get, Logger, Param, ParseIntPipe } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Reward } from './models/reward.interface';
 import { RewardService } from './reward.service';
 
+@ApiTags('rewards-board')
 @Controller('rewards-board/reward')
 export class RewardController {
     private readonly logger = new Logger(RewardController.name);

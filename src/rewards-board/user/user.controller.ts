@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Logger, Param, ParseIntPipe, Patch, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DayUserObjectivesDto, UserDto, UserMapper, UserReviewDto, UserRewardDto, UserSummaryDto } from './dtos/user.dto';
 import { AddAchievementRequestBody } from './models/api-interface';
 import { UserService } from './user.service';
 
-type NewType = UserRewardDto[];
-
+@ApiTags('rewards-board')
 @Controller('rewards-board/user')
 export class UserController {
     private readonly logger = new Logger(UserController.name);

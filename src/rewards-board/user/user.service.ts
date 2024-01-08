@@ -487,7 +487,9 @@ export class UserService {
 
     private findCurrentInPeriods(periods: Period[], periodId: number, date = new Date()): Period | null {
         const time = new Date(date).getTime();
-        return periods.find((period) => period.id === periodId && new Date(period.start).getTime() <= time && new Date(period.end).getTime() > time);
+        return periods.find(
+            (period) => period.id === periodId && new Date(period.start).getTime() <= time && (!period.end || new Date(period.end).getTime() > time),
+        );
     }
 
     private findCurrentObjective(userObjectives: Period[], objectiveId: number, date = new Date()): Period | null {

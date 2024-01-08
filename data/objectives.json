@@ -56,6 +56,20 @@
         "forbidenTo": []
     },
     {
+        "id": 9,
+        "name": "Je fais l’effort demandé",
+        "description": "Je gagne mes points à chaque fois que je fais l’effort demandé pendant au moins 10 min",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 10,
+        "name": "Je laisse mes lunettes à l’école",
+        "description": "Je gagne mes points si j’ai laissé mes lunettes à l’école",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
         "id": 12,
         "name": "Je limite mon temps de jeu avec ma soeur",
         "description": "Je gagne mes points lorsque je limite mon temps de jeu avec ma soeur à 20 min maximum d'affilé, et que je me sépare ensuite au moins 30 min pour jouer seul",
@@ -64,8 +78,8 @@
     },
     {
         "id": 14,
-        "name": "Je passe du temps avec ma soeur sans intervention des mes parents",
-        "description": "Je gagne mes points quand je passe du temps à la maison avec ma soeur et que mes parents n'ont pas besoin d'intervenir",
+        "name": "Je passe du temps avec ma soeur/mon frère sans intervention des mes parents",
+        "description": "Je gagne mes points quand je passe du temps à la maison avec ma soeur/mon frère et que mes parents n'ont pas besoin d'intervenir",
         "reservedTo": [],
         "forbidenTo": []
     },
@@ -87,6 +101,20 @@
         "id": 17,
         "name": "Je me douche dans le respect des heures et durée limites (Lilou)",
         "description": "Je gagne mes points si je suis douché : avant 18H30 ou en moins de 15min les jours où l'on rentre après 18h15",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 18,
+        "name": "Je mets et je débarrasse la table",
+        "description": "Je gagne mes points si j’ai respecter la quantité maximum de linge pour 1 semaine. Limite : 1 fois / semaine",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 19,
+        "name": "Je respecte la limite de linge sale",
+        "description": "Je gagne mes points si dans la semaine, j’ai mis et débarrasser la table le nombre de fois demandé",
         "reservedTo": [],
         "forbidenTo": []
     },
@@ -136,6 +164,20 @@
         "id": 28,
         "name": "J'applique le rituel de retour à la maison",
         "description": "Je gagne mes points chaque fois que je rentre de l'école si : je range mes affaires, je me lave les mains, je prends un temps pour moi de 15min, seule de ma chambre",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 29,
+        "name": "Je débarrasse ma table",
+        "description": "Je gagne mes points à chaque fois que j’ai débarrasser ma table (Assiettes, couverts, verre, serviette, tapis + nettoyage), pour tout le monde. (Hors petit déjeuné)",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
+        "id": 30,
+        "name": "Je mets la table",
+        "description": "Je gagne mes points si j’ai mis la table au moins une fois dans la journée (Tapis, assiettes, couverts, verres et serviettes)",
         "reservedTo": [],
         "forbidenTo": []
     }

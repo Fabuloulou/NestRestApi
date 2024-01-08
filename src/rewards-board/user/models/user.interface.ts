@@ -30,7 +30,7 @@ export interface BonusHistory {
 export interface Period {
     id: number;
     start: Date;
-    end: Date;
+    end?: Date;
     value: number;
 }
 

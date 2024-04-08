@@ -47,7 +47,7 @@ export class DateUtils {
     }
 
     public static isBefore(toTest: Date, ref: Date): boolean {
-        return new Date(toTest).getTime() < new Date(ref).getTime();
+        return !ref || new Date(toTest).getTime() < new Date(ref).getTime();
     }
 
     public static sameDay(toTest: Date, ref: Date): boolean {

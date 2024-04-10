@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
-import { MultiplicationTablesResult } from './models/multiplication-tables.model';
+import { Trainer } from './models/multiplication-tables.model';
 const fs = require('fs');
 
 @Injectable()
@@ -8,9 +8,9 @@ export class MultiplicationTablesRepository {
     private readonly path = 'data/';
     private readonly baseFileName = 'multiplication-tables.json';
 
-    public loadResults(person: string): MultiplicationTablesResult {
+    public loadPersonByName(person: string): Trainer {
         const file = `${this.path}${person}-${this.baseFileName}`;
-        this._logger.debug(`Loading all MultiplicationTablesResult for ${person} from ${file}...`);
+        this._logger.debug(`Loading datas for ${person} from ${file}...`);
         const raw = fs.readFileSync(file, 'utf8');
 
         try {
@@ -22,7 +22,7 @@ export class MultiplicationTablesRepository {
         }
     }
 
-    public writeResults(results: MultiplicationTablesResult): void {
+    public writeResults(results: Trainer): void {
         const file = `${this.path}${results.personName}-${this.baseFileName}`;
         this._logger.debug(`Writting ${results.personName}'s results to ${file}`);
         try {

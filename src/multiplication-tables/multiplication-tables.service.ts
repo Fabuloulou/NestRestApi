@@ -1,78 +1,95 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { MultiplicationTablesResultDto, OperationDto, TrainingSessionDto } from './models/multiplication-tables.dto';
-import { MultiplicationTablesResult, Operation, TrainingSession } from './models/multiplication-tables.model';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { randomUUID } from 'crypto';
+import { TrainerDto, TrainingScoreFullDto, TrainingSessionFullDto } from './models/multiplication-tables.dto';
+import { Trainer, TrainingSession } from './models/multiplication-tables.model';
 import { MultiplicationTablesRepository } from './multiplication-tables.repository';
+import { TrainerHelper } from './trainer.helper';
 
 @Injectable()
 export class MultiplicationTablesService {
     private readonly logger = new Logger(MultiplicationTablesService.name);
     constructor(private _repository: MultiplicationTablesRepository) {}
 
-    loadAndComputeScore(person: string): MultiplicationTablesResultDto {
-        const entity = this.loadOrDefault(person);
-        const totalSuccess = entity.sessions
-            .map((session) => session.results.reduce((previous, operation) => previous + (this.isOperationSuccess(operation) ? 1 : 0), 0))
-            .reduce((previous, current) => previous + current, 0);
-        const score = this.computeScore(totalSuccess, this.countTotalOperations(entity));
+    loadAndComputeScore(person: string): TrainerDto {
+        this.logger.debug(`Loading ${person}...`);
+        const entity: Trainer = this.loadOrDefaultByName(person);
+        this.logger.debug(`${person} loaded. Computing scores...`);
 
-        this.logger.debug(`Datas of ${person} loaded. Score = ${score}/100`);
+        const helper = new TrainerHelper(entity);
+        helper.fillTrainerScore();
 
-        return new MultiplicationTablesResultDto(
-            entity.personName,
-            entity.sessions.map((session) => this.mapTrainingSessionToDto(session)),
-            score,
-        );
+        this.logger.debug(`Scores for ${person} computed : ${helper.trainerDto.trainerScore.totalScore}/100`);
+
+        return helper.trainerDto;
     }
 
-    addTrainingSession(person: string, training: TrainingSessionDto): void {
+    loadAndComputeDetailedScore(person: string): TrainingScoreFullDto {
+        this.logger.debug(`Loading ${person}...`);
+        const entity: Trainer = this.loadOrDefaultByName(person);
+        this.logger.debug(`${person} loaded. Computing scores...`);
+
+        const helper = new TrainerHelper(entity);
+
+        this.logger.debug(`Detailed scores loaded for ${person}`);
+        return helper.getTrainerDetailedScore();
+    }
+
+    loadSession(person: string, sessionUuid: string): TrainingSessionFullDto {
+        this.logger.debug(`Loading session with UUID=${sessionUuid} for ${person}...`);
+        const entity: Trainer = this.loadOrDefaultByName(person);
+        const helper = new TrainerHelper(entity);
+
+        const session: TrainingSessionFullDto | null = helper.getSessionScore(sessionUuid);
+
+        if (session) {
+            this.logger.debug(`Session with UUID=${sessionUuid} for ${person} loaded !`);
+            return session;
+        }
+        throw new NotFoundException(sessionUuid, `La session ${sessionUuid} n'existe pas pour la personne ${person}`);
+    }
+
+    addTrainingSession(person: string, training: TrainingSessionFullDto): void {
+        if (!training || !training.results || training.results.length < 1) {
+            this.logger.log(`Training session empty for ${person}. Nothing to do !`);
+            return;
+        }
+
         this.logger.debug(`Adding training session for ${person}...`);
-        const entity = this.loadOrDefault(person);
-        entity.sessions.push({
+        const trainer: Trainer = this.loadOrDefaultByName(person);
+
+        const sessionEntity: TrainingSession = {
+            uuid: training.uuid ?? randomUUID(),
             date: training.date,
-            results: training.results,
-        });
-        this._repository.writeResults(entity);
-        this.logger.debug(`Training session for ${person} added !`);
+            duration: training.duration,
+            results: training.results.filter((res) => res.promptedResult),
+        };
+        trainer.sessions.push(sessionEntity);
+        this._repository.writeResults(trainer);
+
+        this.logger.debug(`Training session UUID=${sessionEntity.uuid} for ${person} added !`);
     }
 
-    private loadOrDefault(person: string): MultiplicationTablesResult {
+    generateOperations(person: string, quantity: number): [number, number][] {
+        this.logger.debug(`Loading ${person} to generated customized operations...`);
+        const entity: Trainer = this.loadOrDefaultByName(person);
+        this.logger.debug(`${person} loaded. Computing scores...`);
+
+        const helper = new TrainerHelper(entity);
+        const operations = helper.generateOperations(quantity);
+        this.logger.debug(`Customized operations generated for ${person}`);
+
+        return operations;
+    }
+
+    private loadOrDefaultByName(person: string): Trainer {
         this.logger.debug(`Loading datas of ${person} and computing scores...`);
-        let entity: MultiplicationTablesResult;
+        let entity: Trainer;
         try {
-            entity = this._repository.loadResults(person);
+            entity = this._repository.loadPersonByName(person);
         } catch (err) {
             this.logger.log(`${person} doesn't exists. Creating one`);
-            entity = { personName: person, sessions: [] };
+            entity = { personName: person, uuid: randomUUID(), sessions: [] };
         }
-        this.logger.debug(`Data`, entity);
         return entity;
-    }
-
-    private isOperationSuccess(operation: Operation): boolean {
-        return operation.table * operation.varient === operation.promptedResult;
-    }
-
-    private countSuccess(session: TrainingSession): number {
-        return session.results.filter((op) => this.isOperationSuccess(op)).length;
-    }
-
-    private countTotalOperations(results: MultiplicationTablesResult): number {
-        return results.sessions.reduce((previous, session) => previous + session.results.length, 0);
-    }
-
-    private computeScore(success: number, operationCount: number): number {
-        return success > 0 ? (success * 100) / operationCount : 0;
-    }
-
-    private mapTrainingSessionToDto(session: TrainingSession): TrainingSessionDto {
-        return new TrainingSessionDto(
-            session.date,
-            session.results.map((obj) => this.mapOperationToDto(obj)),
-            this.computeScore(this.countSuccess(session), session.results.length),
-        );
-    }
-
-    private mapOperationToDto(operation: Operation): OperationDto {
-        return new OperationDto(operation.table, operation.varient, operation.promptedResult);
     }
 }

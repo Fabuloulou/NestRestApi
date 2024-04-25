@@ -2,6 +2,7 @@ export interface Trainer {
     personName: string;
     uuid: string;
     sessions: TrainingSession[];
+    excludedTable?: number;
 }
 
 export interface TrainingSession {

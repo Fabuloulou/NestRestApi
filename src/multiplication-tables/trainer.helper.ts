@@ -62,7 +62,12 @@ export class TrainerHelper {
     }
 
     public generateOperations(quantity = 20): [number, number][] {
-        const score = [...this.getDetailedResult(this._trainer.sessions.flatMap((sessions) => sessions.results).map((op) => this.mapOperationToDto(op)))];
+        const excludedTable = this._trainer.excludedTable ?? 9;
+        const score = [
+            ...this.getDetailedResult(this._trainer.sessions.flatMap((sessions) => sessions.results).map((op) => this.mapOperationToDto(op))).filter(
+                (op) => op.operators[0] < excludedTable,
+            ),
+        ];
         this.shuffleArray(score);
 
         const operations: [number, number][] = [];

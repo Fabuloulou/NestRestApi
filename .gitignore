@@ -35,5 +35,4 @@ lerna-debug.log*
 !.vscode/extensions.json
 run.bat
 data/users.json
-data/lilou-multiplication-tables.json
-data/mathis-multiplication-tables.json
+data/*-multiplication-tables.json

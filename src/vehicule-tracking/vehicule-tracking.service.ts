@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { MqttService } from '../utils/mqtt-service';
 import { Vehicule } from './models/vehicule.interface';
 
 @Injectable()
 export class VehiculeTrackingService {
+    private readonly logger = new Logger(VehiculeTrackingService.name);
     private _vehicules: Vehicule[] = [
         {
             ident: 'CN-337-MB',
@@ -35,6 +36,7 @@ export class VehiculeTrackingService {
             vehicule: vehiculeId,
             data: fillUpData,
         });
+        this.logger.log(`Sending fill-up for ${vehiculeId} to MQTT with payload=${payload}`);
 
         this._mqttService.publish('vehicule-tracking/fill-up', payload);
     }

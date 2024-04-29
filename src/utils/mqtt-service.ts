@@ -3,7 +3,6 @@ import { connect } from 'mqtt';
 
 @Injectable()
 export class MqttService implements OnModuleInit {
-    // private logger = new Logger(MqttService.name);
     private mqttClient;
 
     onModuleInit() {
@@ -19,18 +18,9 @@ export class MqttService implements OnModuleInit {
             connectTimeout: 4000,
             reconnectPeriod: 1000,
         });
-
-        // this.mqttClient.on('connect', function () {
-        //     this.logger.log('Connected to MQTT Server');
-        // });
-
-        // this.mqttClient.on('error', function () {
-        //     this.logger.error('Error in connecting to CloudMQTT');
-        // });
     }
 
     publish(topic: string, payload: string): string {
-        // this.logger.log('Publishing to ' + topic);
         this.mqttClient.publish(topic, payload);
         return `Publishing to ${topic}`;
     }

@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Logger, Param, Patch } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { TrainerDto, TrainingScoreFullDto, TrainingSessionFullDto } from './models/multiplication-tables.dto';
 import { MultiplicationTablesService } from './multiplication-tables.service';
 
+@ApiTags('multiplication-tables')
 @Controller('multiplication-tables')
 export class MultiplicationTablesController {
     private readonly logger = new Logger(MultiplicationTablesController.name);

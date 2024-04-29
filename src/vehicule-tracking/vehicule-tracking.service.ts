@@ -31,13 +31,12 @@ export class VehiculeTrackingService {
     constructor(private _mqttService: MqttService) {}
 
     public fillUp(vehiculeId: string, fillUpData: { key: string; value: string }[]) {
-        this._mqttService.publish(
-            'vehicule-tracking/fill-up',
-            JSON.stringify({
-                vehicule: vehiculeId,
-                data: fillUpData,
-            }),
-        );
+        const payload = JSON.stringify({
+            vehicule: vehiculeId,
+            data: fillUpData,
+        });
+
+        this._mqttService.publish('vehicule-tracking/fill-up', payload);
     }
 
     public getVehicules(): Vehicule[] {

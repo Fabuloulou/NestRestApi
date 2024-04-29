@@ -7,7 +7,7 @@ export class MqttService implements OnModuleInit {
     private mqttClient;
 
     onModuleInit() {
-        const host = '192.168.1.14';
+        const host = '192.168.1.47';
         const port = '1883';
         const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
 

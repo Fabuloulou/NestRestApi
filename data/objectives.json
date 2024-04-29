@@ -70,6 +70,13 @@
         "forbidenTo": []
     },
     {
+        "id": 11,
+        "name": "Je maitrise mon comportement le matin",
+        "description": "Je gagne mes points si le matin (jusqu’au lavage de dents) je reste calme, agréable, et j’écoute les remarques qui me sont faites",
+        "reservedTo": [],
+        "forbidenTo": []
+    },
+    {
         "id": 12,
         "name": "Je limite mon temps de jeu avec ma soeur",
         "description": "Je gagne mes points lorsque je limite mon temps de jeu avec ma soeur à 20 min maximum d'affilé, et que je me sépare ensuite au moins 30 min pour jouer seul",
@@ -107,14 +114,14 @@
     {
         "id": 18,
         "name": "Je mets et je débarrasse la table",
-        "description": "Je gagne mes points si j’ai respecter la quantité maximum de linge pour 1 semaine. Limite : 1 fois / semaine",
+        "description": "Je gagne mes points si dans la semaine, j’ai mis et débarrasser la table le nombre de fois demandé",
         "reservedTo": [],
         "forbidenTo": []
     },
     {
         "id": 19,
         "name": "Je respecte la limite de linge sale",
-        "description": "Je gagne mes points si dans la semaine, j’ai mis et débarrasser la table le nombre de fois demandé",
+        "description": "Je gagne mes points si j’ai respecter la quantité maximum de linge pour 1 semaine. Limite : 1 fois / semaine",
         "reservedTo": [],
         "forbidenTo": []
     },

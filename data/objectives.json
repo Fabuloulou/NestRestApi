@@ -1,191 +1,219 @@
 [
-    {
-        "id": 1,
-        "name": "Je suis douché avant 18h30 ou de suite en rentrant du foot",
-        "description": "Je gagne mes points si je suis sorti de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes). Les jours de foot, je me douche dès que je rentre.",
-        "reservedTo": ["MATHIS"],
-        "forbidenTo": []
-    },
-    {
-        "id": 2,
-        "name": "Je suis douchée avant 18h30",
-        "description": "Je gagne mes points si je suis sortie de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes).",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 3,
-        "name": "Je suis prêt avant 8H les matins d'école",
-        "description": "Je gagne mes points si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 4,
-        "name": "Je vais me laver les dents de suite après le repas du soir",
-        "description": "Je gagne mes points si je pars me laver les dents quand j'ai fini mon repas et que je descends de table",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 5,
-        "name": "J'ai les cheveux attachés à chaque début de repas",
-        "description": "Je gagne mes points si pour chacun des repas de la journée (matin, midi et soir) j'ai les cheveux attachés",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 6,
-        "name": "Je joue avec ma soeur sans que mes parents n'interviennent",
-        "description": "Je gagne mes points pour chaque demie journée à la maison où j'ai joué avec ma soeur, sans que mes parents n'ai eu besoin d'intervenir",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 7,
-        "name": "J'ai les cheveux attachés au début du repas",
-        "description": "Je gagne mon point à chaque repas si avant de m'installer à table j'ai les cheveux attachés sans qu'on me l'ai demandé",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 8,
-        "name": "Je me douche dans le respect des heures et durée limites (Mathis)",
-        "description": "Je gagne mes points si je suis douché : avant 18H00 ou en moins de 15min les jours où l'on rentre après 17h45",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 9,
-        "name": "Je fais l’effort demandé",
-        "description": "Je gagne mes points à chaque fois que je fais l’effort demandé pendant au moins 10 min",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 10,
-        "name": "Je laisse mes lunettes à l’école",
-        "description": "Je gagne mes points si j’ai laissé mes lunettes à l’école",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 11,
-        "name": "Je maitrise mon comportement le matin",
-        "description": "Je gagne mes points si le matin (jusqu’au lavage de dents) je reste calme, agréable, et j’écoute les remarques qui me sont faites",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 12,
-        "name": "Je limite mon temps de jeu avec ma soeur",
-        "description": "Je gagne mes points lorsque je limite mon temps de jeu avec ma soeur à 20 min maximum d'affilé, et que je me sépare ensuite au moins 30 min pour jouer seul",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 14,
-        "name": "Je passe du temps avec ma soeur/mon frère sans intervention des mes parents",
-        "description": "Je gagne mes points quand je passe du temps à la maison avec ma soeur/mon frère et que mes parents n'ont pas besoin d'intervenir",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 15,
-        "name": "J'utilise le STOP pour exprimer mes émotions",
-        "description": "Je gagne mes points si je réussi après UNE demande de mes parents, à exprimer mes émotions avec la méthode STOP - Réflexion - Action. ",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 16,
-        "name": "J'ai les cheveux attachés avant le début du repas",
-        "description": "Je gagne mes points si j'ai les cheveux attachés AVANT le début du repas, sans qu'on me l'ai demandé",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 17,
-        "name": "Je me douche dans le respect des heures et durée limites (Lilou)",
-        "description": "Je gagne mes points si je suis douché : avant 18H30 ou en moins de 15min les jours où l'on rentre après 18h15",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 18,
-        "name": "Je mets et je débarrasse la table",
-        "description": "Je gagne mes points si dans la semaine, j’ai mis et débarrasser la table le nombre de fois demandé",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 19,
-        "name": "Je respecte la limite de linge sale",
-        "description": "Je gagne mes points si j’ai respecter la quantité maximum de linge pour 1 semaine. Limite : 1 fois / semaine",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 21,
-        "name": "Je me lave les dents calmement en même temps que mon frère / ma soeur",
-        "description": "Je gagne mes points si je me lave les dents en même temps que mon frère / ma soeur, tout en restant silencieux et concentré-e",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 23,
-        "name": "Je range ma chambre chaque soir",
-        "description": "Je gagne mes points si ma chambre est rangée avant de commencer ma lecture du soir (Vêtements propres et sales, jouets, doudous, bureau, table de nuit)",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 24,
-        "name": "Je prépare mes affaires de foot la veille",
-        "description": "Je gagne mes points si mes affaires de foot sont prêtes la veille, sans aide et sans rappel de mes parents",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 25,
-        "name": "J'indique calmement et clairement mes émotions et mes besoins",
-        "description": "Je gagne mes points à chaque fois que j'utilise la méthode OSBD pour exprimer mes émotions et mes besoins",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 26,
-        "name": "Je me calme efficacement",
-        "description": "Je gagne mon point si chaque fois qu'on me le demande, j'utilise la respiration les yeux fermés, un livre, ou la mise à l'écart, pendant au moins  2 minutes.",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 27,
-        "name": "Je mange mon plat en moins de 15min",
-        "description": "Je gagne mes points si lors de chaque repas, j'ai terminé de manger mon plat principal en 15 min maximum",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 28,
-        "name": "J'applique le rituel de retour à la maison",
-        "description": "Je gagne mes points chaque fois que je rentre de l'école si : je range mes affaires, je me lave les mains, je prends un temps pour moi de 15min, seule de ma chambre",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 29,
-        "name": "Je débarrasse ma table",
-        "description": "Je gagne mes points à chaque fois que j’ai débarrasser ma table (Assiettes, couverts, verre, serviette, tapis + nettoyage), pour tout le monde. (Hors petit déjeuné)",
-        "reservedTo": [],
-        "forbidenTo": []
-    },
-    {
-        "id": 30,
-        "name": "Je mets la table",
-        "description": "Je gagne mes points si j’ai mis la table au moins une fois dans la journée (Tapis, assiettes, couverts, verres et serviettes)",
-        "reservedTo": [],
-        "forbidenTo": []
-    }
+  {
+    "id": 1,
+    "name": "Je suis douché avant 18h30 ou de suite en rentrant du foot",
+    "description": "Je gagne mes points si je suis sorti de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes). Les jours de foot, je me douche dès que je rentre.",
+    "reservedTo": ["MATHIS"],
+    "forbidenTo": []
+  },
+  {
+    "id": 2,
+    "name": "Je suis douchée avant 18h30",
+    "description": "Je gagne mes points si je suis sortie de la douche avant 18h30, en ayant respecter chaque tâches (Cf étiquettes).",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 3,
+    "name": "Je suis prêt avant 8H les matins d'école",
+    "description": "Je gagne mes points si je suis prêt avant 8H (j'ai déjeuné, mes dents sont lavées, mon sac est prêt)",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 4,
+    "name": "Je vais me laver les dents de suite après le repas du soir",
+    "description": "Je gagne mes points si je pars me laver les dents quand j'ai fini mon repas et que je descends de table",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 5,
+    "name": "J'ai les cheveux attachés à chaque début de repas",
+    "description": "Je gagne mes points si pour chacun des repas de la journée (matin, midi et soir) j'ai les cheveux attachés",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 6,
+    "name": "Je joue avec ma soeur sans que mes parents n'interviennent",
+    "description": "Je gagne mes points pour chaque demie journée à la maison où j'ai joué avec ma soeur, sans que mes parents n'ai eu besoin d'intervenir",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 7,
+    "name": "J'ai les cheveux attachés au début du repas",
+    "description": "Je gagne mon point à chaque repas si avant de m'installer à table j'ai les cheveux attachés sans qu'on me l'ai demandé",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 8,
+    "name": "Je me douche dans le respect des heures et durée limites (Mathis)",
+    "description": "Je gagne mes points si je suis douché : avant 18H00 ou en moins de 15min les jours où l'on rentre après 17h45",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 9,
+    "name": "Je fais l’effort demandé",
+    "description": "Je gagne mes points à chaque fois que je fais l’effort demandé pendant au moins 10 min",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 10,
+    "name": "Je laisse mes lunettes à l’école",
+    "description": "Je gagne mes points si j’ai laissé mes lunettes à l’école",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 11,
+    "name": "Je maitrise mon comportement le matin",
+    "description": "Je gagne mes points si le matin (jusqu’au lavage de dents) je reste calme, agréable, et j’écoute les remarques qui me sont faites",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 12,
+    "name": "Je limite mon temps de jeu avec ma soeur",
+    "description": "Je gagne mes points lorsque je limite mon temps de jeu avec ma soeur à 20 min maximum d'affilé, et que je me sépare ensuite au moins 30 min pour jouer seul",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 14,
+    "name": "Je passe du temps avec ma soeur/mon frère sans intervention des mes parents",
+    "description": "Je gagne mes points quand je passe du temps à la maison avec ma soeur/mon frère et que mes parents n'ont pas besoin d'intervenir",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 15,
+    "name": "J'utilise le STOP pour exprimer mes émotions",
+    "description": "Je gagne mes points si je réussi après UNE demande de mes parents, à exprimer mes émotions avec la méthode STOP - Réflexion - Action. ",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 16,
+    "name": "J'ai les cheveux attachés avant le début du repas",
+    "description": "Je gagne mes points si j'ai les cheveux attachés AVANT le début du repas, sans qu'on me l'ai demandé",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 17,
+    "name": "Je me douche dans le respect des heures et durée limites (Lilou)",
+    "description": "Je gagne mes points si je suis douché : avant 18H30 ou en moins de 15min les jours où l'on rentre après 18h15",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 18,
+    "name": "Je mets et je débarrasse la table",
+    "description": "Je gagne mes points si dans la semaine, j’ai mis et débarrasser la table le nombre de fois demandé",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 19,
+    "name": "Je respecte la limite de linge sale",
+    "description": "Je gagne mes points si j’ai respecter la quantité maximum de linge pour 1 semaine. Limite : 1 fois / semaine",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 21,
+    "name": "Je me lave les dents calmement en même temps que mon frère / ma soeur",
+    "description": "Je gagne mes points si je me lave les dents en même temps que mon frère / ma soeur, tout en restant silencieux et concentré-e",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 23,
+    "name": "Je range ma chambre chaque soir",
+    "description": "Je gagne mes points si ma chambre est rangée avant de commencer ma lecture du soir (Vêtements propres et sales, jouets, doudous, bureau, table de nuit)",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 24,
+    "name": "Je prépare mes affaires de foot la veille",
+    "description": "Je gagne mes points si mes affaires de foot sont prêtes la veille, sans aide et sans rappel de mes parents",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 25,
+    "name": "J'indique calmement et clairement mes émotions et mes besoins",
+    "description": "Je gagne mes points à chaque fois que j'utilise la méthode OSBD pour exprimer mes émotions et mes besoins",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 26,
+    "name": "Je me calme efficacement",
+    "description": "Je gagne mon point si chaque fois qu'on me le demande, j'utilise la respiration les yeux fermés, un livre, ou la mise à l'écart, pendant au moins  2 minutes.",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 27,
+    "name": "Je mange mon plat en moins de 15min",
+    "description": "Je gagne mes points si lors de chaque repas, j'ai terminé de manger mon plat principal en 15 min maximum",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 28,
+    "name": "J'applique le rituel de retour à la maison",
+    "description": "Je gagne mes points chaque fois que je rentre de l'école si : je range mes affaires, je me lave les mains, je prends un temps pour moi de 15min, seule de ma chambre",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 29,
+    "name": "Je débarrasse ma table",
+    "description": "Je gagne mes points à chaque fois que j’ai débarrasser ma table (Assiettes, couverts, verre, serviette, tapis + nettoyage), pour tout le monde. (Hors petit déjeuné)",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 30,
+    "name": "Je mets la table",
+    "description": "Je gagne mes points si j’ai mis la table au moins une fois dans la journée (Tapis, assiettes, couverts, verres et serviettes)",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 31,
+    "name": "Je fais d'abord les choses que je dois faire",
+    "description": "Matin : petit déjeuné, dents lavées, sac prêt. Retour d’école : devoirs, douche. WE : Devoirs finis avant 12h, douche avant 18h30",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 32,
+    "name": "Je fais 1 tâche ménagère",
+    "description": "Je gagne mes points si je fais 1 tâche ménagère dans la journée",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 33,
+    "name": "Je fais 2 tâches ménagères",
+    "description": "Je gagne mes points si je fais 1 tâche ménagère dans la journée",
+    "reservedTo": [],
+    "forbidenTo": []
+  },
+  {
+    "id": 34,
+    "name": "Je m’arrête tant que tout va bien et avant que la situation ne dégénère",
+    "description": "",
+    "reservedTo": [],
+    "forbidenTo": []
+  }
 ]

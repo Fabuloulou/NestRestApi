@@ -1,27 +1,159 @@
 [
-    { "id": 0, "name": "Ajustement", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 1, "name": "2 bonbons 🍬", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 2, "name": "Un tatoo", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 3, "name": "Lecture du soir : 10 min en plus 📖", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 4, "name": "Lecture par papa ou maman : 5 min en plus 📖", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 5, "name": "10 minutes d'écran en plus 📱", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 6, "name": "Une glace en dessert 🍨", "limit": { "frequency": "week", "limit": 1 } },
-    { "id": 7, "name": "Je choisi un repas 🍽", "limit": { "frequency": "week", "limit": 1 } },
-    { "id": 8, "name": "Sortie : piscine le dimanche matin 🏊‍♀️", "limit": { "frequency": "month", "limit": 1 } },
-    { "id": 9, "name": "Activité : un film le soir avec papa/maman le vendredi ou samedi soir 📺", "limit": { "frequency": "month", "limit": 2 } },
-    { "id": 10, "name": "Achat : un livre 📕", "limit": { "frequency": "day", "limit": 10 } },
-    { "id": 11, "name": "Sortie : cinéma 📺", "limit": { "frequency": "month", "limit": 1 } },
-    { "id": 12, "name": "Invitation : un copain pour une matinée / après midi 🧒", "limit": { "frequency": "month", "limit": 1 } },
-    { "id": 13, "name": "Invitation : un copain pour une soirée pyjama 🛌", "limit": { "frequency": "year", "limit": 6 } },
-    { "id": 14, "name": "Sortie : patinoire ⛸", "limit": { "frequency": "year", "limit": 4 } },
-    { "id": 15, "name": "Activité : Monkey Parc, Activ Parc, Hoppy Parc 🎳", "limit": { "frequency": "year", "limit": 4 } },
-    { "id": 16, "name": "Sortie : Stade Toulousain 🏈 / Stadium ⚽", "limit": { "frequency": "year", "limit": 2 } },
-    { "id": 17, "name": "1 carte Pokemon 🐲", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 18, "name": "2 billes", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 19, "name": "1 bon de 20€ d'achat (jouet, vêtement, ...) 💶", "limit": { "frequency": "yeat", "limit": 2 } },
-    { "id": 20, "name": "1 console de jeu 🎮", "limit": { "frequency": "year", "limit": 1 } },
-    { "id": 21, "name": "Cagnotte pour console de jeu", "limit": { "frequency": "day", "limit": 1 } },
-    { "id": 22, "name": "1 collier ras-de-cou", "limit": { "frequency": "week", "limit": 1 } },
-    { "id": 23, "name": "Minecraft", "limit": { "frequency": "year", "limit": 1 } },
-    { "id": 29, "name": "10 min de jeu après le lavage des dents 🃏", "limit": { "frequency": "day", "limit": 1 } }
+  {
+    "id": 0,
+    "name": "Ajustement",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  {
+    "id": 1,
+    "name": "2 bonbons 🍬",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  { "id": 2, "name": "Un tatoo", "limit": { "frequency": "day", "limit": 1 } },
+  {
+    "id": 3,
+    "name": "Lecture du soir : 10 min en plus 📖",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  {
+    "id": 4,
+    "name": "Lecture par papa ou maman : 5 min en plus 📖",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  {
+    "id": 5,
+    "name": "10 minutes d'écran en plus 📱",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 6,
+    "name": "Une glace en dessert 🍨",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 7,
+    "name": "Je choisi un repas (plat ou dessert) 🍽",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 8,
+    "name": "Sortie : piscine le dimanche matin 🏊‍♀️",
+    "limit": { "frequency": "month", "limit": 1 }
+  },
+  {
+    "id": 9,
+    "name": "Activité : un film le soir avec papa/maman le vendredi ou samedi soir 📺",
+    "limit": { "frequency": "month", "limit": 1 }
+  },
+  {
+    "id": 10,
+    "name": "Achat : un livre 📕",
+    "limit": { "frequency": "day", "limit": 10 }
+  },
+  {
+    "id": 11,
+    "name": "Sortie : cinéma 📺",
+    "limit": { "frequency": "month", "limit": 1 }
+  },
+  {
+    "id": 12,
+    "name": "Invitation : un copain pour une matinée / après midi 🧒",
+    "limit": { "frequency": "year", "limit": 6 }
+  },
+  {
+    "id": 13,
+    "name": "Invitation : un copain pour une soirée pyjama 🛌",
+    "limit": { "frequency": "year", "limit": 2 }
+  },
+  {
+    "id": 14,
+    "name": "Sortie : patinoire ⛸",
+    "limit": { "frequency": "year", "limit": 4 }
+  },
+  {
+    "id": 15,
+    "name": "Activité : Monkey Parc, Activ Parc, Hoppy Parc 🎳",
+    "limit": { "frequency": "year", "limit": 4 }
+  },
+  {
+    "id": 16,
+    "name": "Sortie : Stade Toulousain 🏈 / Stadium ⚽",
+    "limit": { "frequency": "year", "limit": 2 }
+  },
+  {
+    "id": 17,
+    "name": "1 carte Pokemon 🐲",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  { "id": 18, "name": "2 billes", "limit": { "frequency": "day", "limit": 1 } },
+  {
+    "id": 19,
+    "name": "1 bon de 20€ d'achat (jouet, vêtement, ...) 💶",
+    "limit": { "frequency": "year", "limit": 2 }
+  },
+  {
+    "id": 20,
+    "name": "1 console de jeu 🎮",
+    "limit": { "frequency": "year", "limit": 1 }
+  },
+  {
+    "id": 21,
+    "name": "Cagnotte pour console de jeu",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  {
+    "id": 22,
+    "name": "1 collier ras-de-cou",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 23,
+    "name": "Minecraft",
+    "limit": { "frequency": "year", "limit": 1 }
+  },
+  {
+    "id": 29,
+    "name": "10 min de jeu après le lavage des dents 🃏",
+    "limit": { "frequency": "day", "limit": 1 }
+  },
+  {
+    "id": 30,
+    "name": "100g de bonbons 🍬",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 31,
+    "name": "15 billes",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 32,
+    "name": "5 carte Pokemon 🐲",
+    "limit": { "frequency": "week", "limit": 1 }
+  },
+  {
+    "id": 33,
+    "name": "1 séance de 20 tirs à la carabine",
+    "limit": { "frequency": "month", "limit": 1 }
+  },
+  {
+    "id": 34,
+    "name": "Sortie à la piscine, patinoire, Monkey Parc, Aktiv Parc ...",
+    "limit": { "frequency": "year", "limit": 4 }
+  },
+  {
+    "id": 35,
+    "name": "1 demie-journée seul avec papa ou maman",
+    "limit": { "frequency": "year", "limit": 2 }
+  },
+  {
+    "id": 36,
+    "name": "Une nouvelle trotinette",
+    "limit": { "frequency": "year", "limit": 1 }
+  },
+  {
+    "id": 37,
+    "name": "Un nouveau vélo",
+    "limit": { "frequency": "year", "limit": 1 }
+  }
 ]

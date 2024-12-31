@@ -51,6 +51,28 @@ export class UserService {
         return this.getUser(userId);
     }
 
+    public removeAchievement(userId: number, objectiveId: number, date?: Date): User {
+        const user: User = this.getUser(userId);
+        const objective: Objective = this._objectiveService.getById(objectiveId);
+
+        const userObj = this.findCurrentObjective(user.objectives, objectiveId, date !== undefined ? date : new Date());
+        if (userObj === undefined) {
+            throw new BadRequestException(`L'objectif ${objective.name} n'est pas un objectif actif de ${user.lastName}`);
+        }
+
+        // Remove the last occurence of hit of the day
+        const lastHit: UserHistory = user.objectivesRiched
+            .filter((elem) => elem.id === objectiveId && DateUtils.sameDay(elem.date, date ?? new Date()) && elem.value === userObj.value)
+            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+            .shift();
+        const indexToRemove = user.objectivesRiched.indexOf(lastHit);
+        user.objectivesRiched.splice(indexToRemove, 1);
+
+        this.update(user);
+
+        return this.getUser(userId);
+    }
+
     public addBonus(userId: number, bonusPoints: number, comment?: string): User {
         const user: User = this.getUser(userId);
 

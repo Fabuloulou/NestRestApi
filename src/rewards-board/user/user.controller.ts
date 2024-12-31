@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Param, ParseIntPipe, Patch, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, ParseIntPipe, Patch, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DayUserObjectivesDto, UserDto, UserMapper, UserReviewDto, UserRewardDto, UserSummaryDto } from './dtos/user.dto';
 import { AddAchievementRequestBody } from './models/api-interface';
@@ -61,6 +61,12 @@ export class UserController {
                 ' ...',
         );
         return UserMapper.toDto(this._userService.addAchievement(userId, body.objectiveId, body.date));
+    }
+
+    @Delete(':userId/achievement')
+    public removeAchievement(@Param('userId', ParseIntPipe) userId: number, @Query('objectiveId') objectiveId: string, @Query('date') date: Date): UserDto {
+        this.logger.log(`DELETE request received. Removing achievement of objective with ID=${objectiveId} to user with ID=${userId} on date=${date}...`);
+        return UserMapper.toDto(this._userService.removeAchievement(userId, +objectiveId, date));
     }
 
     @Patch(':userId/bonus/:bonusPoints')

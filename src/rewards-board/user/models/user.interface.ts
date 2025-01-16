@@ -5,6 +5,7 @@ export interface User {
     birthDate?: Date;
     currentPoints: number;
     totalPoints: number;
+    pendingPoints: number;
     objectives: Period[];
     objectivesRiched?: UserHistory[];
     rewards: Period[];

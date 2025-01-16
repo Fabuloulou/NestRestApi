@@ -23,6 +23,7 @@ export class UserService {
             this.initHistories(user);
             this.computeTotalPoints(user);
             this.computeCurrentPoints(user);
+            this.computePendingPoints(user);
             return user;
         });
 
@@ -429,6 +430,12 @@ export class UserService {
     private computeCurrentPoints(user: User) {
         const totalUsedPoints = user.rewardsConsumed.reduce((previous, current) => previous + current.value, 0);
         user.currentPoints = user.totalPoints - totalUsedPoints;
+    }
+
+    private computePendingPoints(user: User) {
+        user.pendingPoints = user.objectivesRiched
+            .filter((hit) => DateUtils.isAfter(hit.date, user.lastReviewDate))
+            .reduce((previous, current) => previous + current.value, 0);
     }
 
     private getRewardProgress(user: User, cost: number): number {

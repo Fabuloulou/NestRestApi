@@ -8,6 +8,7 @@ export interface UserDto {
     birthDate?: Date;
     currentPoints: number;
     totalPoints: number;
+    pendingPoints: number;
     creationDate?: Date;
     lastModificationDate?: Date;
     lastReviewDate?: Date;
@@ -74,6 +75,7 @@ export class UserMapper {
             birthDate: user.birthDate,
             currentPoints: user.currentPoints,
             totalPoints: user.totalPoints,
+            pendingPoints: user.pendingPoints,
             creationDate: user.creationDate,
             lastModificationDate: user.lastModificationDate,
             lastReviewDate: user.lastReviewDate,
